@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ Base ============ */
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: #ffffff;
+  color: #404040;
+  font-family: Raleway, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+}
+
+/* ============ Components ============ */
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-[1160px] px-5 sm:px-6;
+  }
+
+  .section {
+    @apply relative py-20 sm:py-24 lg:py-[100px];
+  }
+
+  /* Section background variants (alternating like by-finance.com) */
+  .section-white {
+    @apply bg-white2;
+  }
+  .section-blue {
+    @apply bg-section-blue;
+  }
+  .section-blue-soft {
+    @apply bg-blue50;
+  }
+
+  /* Eyebrow pill */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-sky2/[0.18] px-4 py-1.5 text-[12px] font-bold uppercase tracking-[2px] text-navyDeep;
+  }
+
+  /* Headings */
+  .h1 {
+    @apply font-display text-[40px] font-extrabold leading-[1.05] tracking-[-1px] text-textDark sm:text-[52px] lg:text-[68px];
+  }
+
+  .h2 {
+    @apply font-display text-[32px] font-extrabold leading-[1.1] tracking-[-0.8px] text-textDark sm:text-[40px] lg:text-[48px];
+  }
+
+  .h3 {
+    @apply font-display text-[24px] font-extrabold leading-snug tracking-tight text-textDark sm:text-[28px];
+  }
+
+  .lead {
+    @apply text-[18px] leading-relaxed text-muted sm:text-[19px];
+  }
+
+  /* Brand text gradient */
+  .brand-text {
+    @apply bg-hero-gradient bg-clip-text text-transparent;
+  }
+  .title-gradient {
+    @apply bg-title-gradient bg-clip-text text-transparent;
+  }
+
+  /* ============ Buttons (pill, by-finance style) ============ */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full px-[34px] py-[15px] font-semibold tracking-[0.3px] text-[15px] transition-all duration-200 whitespace-nowrap;
+  }
+
+  .btn-primary {
+    @apply btn bg-navy-gradient text-white shadow-primary hover:-translate-y-0.5 hover:shadow-primaryHover;
+    background-size: 200% 200%;
+  }
+  .btn-primary:hover {
+    background-position: 100% 0;
+  }
+
+  .btn-secondary {
+    @apply btn bg-sky-gradient text-navyDeep hover:-translate-y-0.5 hover:shadow-sky;
+    background-size: 200% 200%;
+  }
+  .btn-secondary:hover {
+    background-position: 100% 0;
+  }
+
+  .btn-outline {
+    @apply btn border border-line bg-white text-textDark hover:border-sky2 hover:text-sky2;
+  }
+
+  .btn-ghost {
+    @apply btn text-textDark hover:text-sky2;
+  }
+
+  /* Card */
+  .card {
+    @apply relative rounded-[22px] border border-line bg-white p-6 transition-all duration-300 sm:p-7;
+  }
+  .card:hover {
+    @apply -translate-y-1 shadow-cardHover;
+    border-color: rgba(90, 191, 255, 0.4);
+  }
+
+  /* Tariff styles — light theme but VIP/MAX still emphasized */
+  .tariff {
+    @apply relative flex flex-col rounded-[28px] border border-line bg-white p-7 transition-all duration-300 sm:p-9;
+    box-shadow: 0 12px 36px rgba(30, 63, 96, 0.06);
+  }
+  .tariff-base:hover {
+    @apply -translate-y-1 shadow-cardHover;
+    border-color: rgba(90, 191, 255, 0.35);
+  }
+  .tariff-vip {
+    @apply border-sky2/60;
+    box-shadow:
+      0 0 0 1px rgba(90, 191, 255, 0.45),
+      0 26px 60px -20px rgba(90, 191, 255, 0.5);
+  }
+  .tariff-max {
+    @apply text-white;
+    background: linear-gradient(180deg, #1e3f60 0%, #2b557d 100%);
+    border: none;
+    box-shadow:
+      0 0 0 1px rgba(30, 63, 96, 0.6),
+      0 30px 80px -20px rgba(30, 63, 96, 0.55);
+  }
+  .tariff-max .tariff-feature-icon {
+    background: linear-gradient(116deg, #94d4fd, #5abfff);
+    color: #1e3f60;
+  }
+
+  /* Eyebrow inverted (for dark sections) */
+  .eyebrow-inv {
+    @apply inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[2px] text-white;
+  }
+}
+
+/* ============ Utilities ============ */
+.divider-grad {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(90, 191, 255, 0.4) 50%,
+    transparent 100%
+  );
+  height: 1px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  scrollbar-width: none;
+}
