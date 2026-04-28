@@ -1,152 +1,138 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
+
+const STATS = [
+  { k: "3 700+", v: "Студентів" },
+  { k: "$100", v: "Стартовий капітал" },
+  { k: "3.0", v: "Версія курсу" },
+];
 
 export default function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-bg pt-[140px] pb-[100px] sm:pt-[150px]"
+      className="relative overflow-hidden bg-bg pt-32 pb-20 md:pt-40 md:pb-28"
     >
       <div className="pointer-events-none absolute inset-0 bg-hero-radial" />
 
       <div className="container-px relative">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.85fr_1fr]">
-          {/* LEFT: text */}
-          <div>
-            <span className="eyebrow mb-6">
+        <div className="grid items-center gap-10 lg:grid-cols-12">
+
+          {/* ─── LEFT col-span-7 ─── */}
+          <div className="lg:col-span-7">
+
+            {/* Chip */}
+            <span className="eyebrow">
               <span className="h-2 w-2 rounded-full bg-sky2 ring-4 ring-sky2/25" />
-              Школа BY finance · авторський курс
+              BY FINANCE · ШКОЛА ІНВЕСТИЦІЙ
             </span>
 
-            <h1 className="h1">
-              Опануй <span className="brand-text">інвестування</span> і почни
-              заробляти на своїх грошах
+            {/* H1 — display */}
+            <h1 className="mt-7 font-display text-[clamp(2.4rem,6vw,5.2rem)] leading-[1.02] tracking-[-0.02em] text-textDark">
+              <span className="italic text-sky2">BY INVEST 3.0</span>
+              <span className="mt-4 block text-[0.4em] font-sans font-normal not-italic leading-snug tracking-tight text-muted">
+                від школи інвестицій та фінансової грамотності{" "}
+                <span className="font-semibold text-sky2">BY FINANCE</span>
+              </span>
             </h1>
 
-            <p className="mt-[18px] max-w-[520px] text-[19px] font-normal leading-relaxed text-muted">
-              Курс <strong className="text-textDark">BY INVEST</strong> —
-              покроковий шлях від першого депозиту до структурованого
-              інвестиційного портфеля. Без складних термінів, на реальних
-              прикладах.
+            {/* H2 */}
+            <h2 className="mt-8 font-display text-2xl leading-snug text-textDark/90 md:text-3xl">
+              Як сформувати{" "}
+              <span className="text-sky2">капітал</span> в довгострок та вийти
+              на стабільний пасивний дохід{" "}
+              <span className="italic text-sky2">від $100/міс</span>
+            </h2>
+
+            {/* Description */}
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
+              Через надійні інструменти фондового ринку — навіть якщо ти
+              починаєш з нуля і нічого не розумієш в інвестиціях.
             </p>
 
-            <div className="mt-[34px] flex flex-wrap gap-[14px]">
+            {/* Quote */}
+            <div className="mt-10 max-w-xl rounded-[18px] border border-sky2/30 bg-blue50 p-6 md:p-7">
+              <p className="font-display italic text-lg leading-snug text-textDark md:text-xl">
+                «Той, хто починає з $100 сьогодні, через 20 років матиме
+                більше, ніж той, хто чекатиме „кращого моменту" і почне з
+                $200 через 5 років»
+              </p>
+            </div>
+
+            {/* CTAs */}
+            <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link href="/diagnostics" className="btn-primary">
-                Записатися на діагностику <ArrowRight size={18} />
+                Записатися на безкоштовну діагностику
               </Link>
-              <Link href="#tariffs" className="btn-secondary">
-                Подивитися тарифи
+              <Link
+                href="#program"
+                className="border-b border-line pb-1 text-[13px] font-medium text-textDark/80 transition hover:text-sky2"
+              >
+                ДІЗНАЙСЯ БІЛЬШЕ ПРО «BY INVEST 3.0» →
               </Link>
             </div>
 
-            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px] text-muted">
-              <div className="flex items-center gap-2">
-                <ShieldCheck size={16} className="text-sky2" />
-                Гарантія повернення коштів
-              </div>
-              <span className="hidden h-1 w-1 rounded-full bg-line sm:block" />
-              <div>5 000+ випускників</div>
-              <span className="hidden h-1 w-1 rounded-full bg-line sm:block" />
-              <div>20+ країн</div>
+            {/* Trust line */}
+            <div className="mt-5 flex items-center gap-2 text-[13px] text-muted">
+              <ShieldCheck size={15} className="text-sky2" />
+              Гарантія повернення коштів · Без зобов&apos;язань
+            </div>
+
+            {/* Stats */}
+            <div className="mt-12 grid max-w-xl grid-cols-3 gap-4">
+              {STATS.map((s) => (
+                <div
+                  key={s.v}
+                  className="rounded-[16px] border border-line bg-white2 p-5 text-center"
+                >
+                  <div className="font-display text-2xl font-extrabold text-textDark md:text-3xl">
+                    {s.k}
+                  </div>
+                  <div className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-muted">
+                    {s.v}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* MIDDLE: stat card */}
-          <div className="hidden lg:block">
-            <div className="relative overflow-hidden rounded-[28px] bg-white2 p-9 shadow-card">
+          {/* ─── RIGHT col-span-5 ─── */}
+          <div className="lg:col-span-5">
+            <div className="relative">
+              {/* Glow behind photo */}
               <div
-                className="pointer-events-none absolute -right-20 -top-20 h-[240px] w-[240px] rounded-full opacity-25 blur-md"
+                className="pointer-events-none absolute inset-0 -z-0 opacity-40 blur-3xl"
                 style={{
-                  background: "linear-gradient(116deg, #94d4fd, #5abfff)",
+                  background:
+                    "radial-gradient(ellipse at center, #94d4fd 0%, transparent 70%)",
                 }}
               />
-              <div className="relative">
-                <div className="text-[12px] font-bold uppercase tracking-[2px] text-navyDeep">
-                  Курс №1
-                </div>
-                <div className="mt-5 text-[76px] font-extrabold leading-none tracking-[-2px] text-textDark">
-                  6<span className="text-sky2">+</span>
-                </div>
-                <div className="mt-2 max-w-[260px] text-[16px] text-muted">
-                  модулів, які проводять від нуля до робочого портфеля
-                </div>
 
-                <div className="mt-6 grid grid-cols-2 gap-4 border-t border-line pt-5">
-                  <div>
-                    <div className="text-[26px] font-extrabold text-textDark">
-                      96%
-                    </div>
-                    <div className="mt-0.5 text-[13px] text-muted">
-                      рекомендують
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-[26px] font-extrabold text-textDark">
-                      7+
-                    </div>
-                    <div className="mt-0.5 text-[13px] text-muted">
-                      років досвіду
-                    </div>
+              {/* Portrait — object-contain, full body visible */}
+              <div className="relative z-10">
+                <Image
+                  src="/images/yulia-hero.png"
+                  alt="Юлія Баткалова — інвестор, засновниця BY Finance"
+                  width={896}
+                  height={1152}
+                  className="h-auto w-full object-contain drop-shadow-[0_30px_60px_rgba(30,63,96,0.18)]"
+                  priority
+                />
+
+                {/* Badge bottom-left */}
+                <div className="absolute bottom-4 left-4 z-20">
+                  <div className="inline-flex items-center gap-3 rounded-full border border-line bg-white2/95 px-5 py-3 shadow-card backdrop-blur-md">
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-sky2" />
+                    <span className="font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-navyDeep">
+                      Юлія Баткалова · Засновниця
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT: photo placeholder */}
-          <div className="relative">
-            <div
-              className="pointer-events-none absolute inset-x-0 top-[10%] bottom-0 -z-0 blur-md"
-              style={{
-                background:
-                  "radial-gradient(ellipse at center, rgba(148,212,253,0.55) 0%, rgba(148,212,253,0.15) 55%, transparent 80%)",
-              }}
-            />
-            <div
-              className="relative z-[1] aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-white2 shadow-card"
-              style={{
-                filter: "drop-shadow(0 30px 50px rgba(30,63,96,0.25))",
-              }}
-            >
-              {/* TODO: фото Юлі з Google Drive */}
-              <div className="absolute inset-0 grid place-items-center text-muted">
-                <div className="text-center">
-                  <div className="mx-auto mb-3 grid h-20 w-20 place-items-center rounded-full bg-hero-gradient text-3xl font-extrabold text-white">
-                    Ю
-                  </div>
-                  <div className="text-[12px] uppercase tracking-[2px]">
-                    Фото автора
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute left-4 top-4 rounded-2xl border border-line bg-white2 px-3 py-2 text-[12px] shadow-sm">
-                <div className="text-muted">Засновниця</div>
-                <div className="font-bold text-textDark">Юлія</div>
-              </div>
-              <div className="absolute bottom-4 right-4 rounded-2xl border border-sky2/40 bg-white2 px-3 py-2 text-[12px] shadow-sm">
-                <div className="text-muted">Школа</div>
-                <div className="font-bold text-navyDeep">BY finance</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Trust strip */}
-        <div className="mt-16 grid grid-cols-2 gap-6 border-t border-line pt-10 sm:grid-cols-4">
-          {[
-            ["7+", "років досвіду"],
-            ["5 000+", "учнів"],
-            ["20+", "країн"],
-            ["96%", "задоволеність"],
-          ].map(([value, label]) => (
-            <div key={label}>
-              <div className="font-display text-[32px] font-extrabold leading-none text-textDark">
-                {value}
-              </div>
-              <div className="mt-1.5 text-[14px] text-muted">{label}</div>
-            </div>
-          ))}
         </div>
       </div>
     </section>

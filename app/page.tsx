@@ -1,9 +1,10 @@
 import About from "@/components/About";
-import Benefits from "@/components/Benefits";
 import Bonuses from "@/components/Bonuses";
 import Cases from "@/components/Cases";
 import CTASection from "@/components/CTASection";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import ForWhom from "@/components/ForWhom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Program from "@/components/Program";
@@ -17,15 +18,16 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Benefits />
+        <ForWhom />
+        <CTASection />
+        <Cases />
         <About />
         <Program />
-        <Tariffs />
-        <Bonuses />
-        <Cases />
-        <Reviews />
         <Results />
-        <CTASection />
+        <Bonuses />
+        <Tariffs />
+        <Reviews />
+        <FAQ />
       </main>
       <Footer />
     </>

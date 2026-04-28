@@ -73,14 +73,14 @@ function Carousel<T>({
       <div className="mt-5 flex gap-2">
         <button
           onClick={() => scrollBy(-1)}
-          aria-label="Назад"
+          aria-label="Попередній"
           className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:shadow-sky"
         >
           <ArrowLeft size={16} />
         </button>
         <button
           onClick={() => scrollBy(1)}
-          aria-label="Вперед"
+          aria-label="Наступний"
           className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:shadow-sky"
         >
           <ArrowRight size={16} />

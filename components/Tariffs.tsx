@@ -8,65 +8,84 @@ type Tariff = {
   price: string;
   oldPrice?: string;
   features: string[];
+  bonuses?: string[];
   cta: { label: string; href: string };
   variant: "base" | "vip" | "max";
   badge?: string;
   guarantee?: boolean;
 };
 
+const START_BONUSES = [
+  "Таблиця контролю бюджету",
+  "ТОП додатків для фінансів",
+  "Калькулятор інвест. прибутковості (5, 10, 20 років)",
+  "Практична система: як закрити кредит швидше",
+  "Чек-лист для українців за кордоном",
+  "Інструкція з декларування інвест. доходу",
+  "Шаблон збалансованого портфеля",
+  "ТОП-5 порад безпеки по крипті",
+  "Гайд по спадщині",
+  "Список активів для портфеля (Україна + Європа)",
+  "2 готові інвестиційні стратегії",
+];
+
 const TARIFFS: Tariff[] = [
   {
     id: "start",
     name: "START",
-    tagline: "Базовий формат — для самостійного навчання",
+    tagline: "Для тих, хто хоче розібратись самостійно у своєму темпі",
     price: "$299",
     oldPrice: "$399",
     features: [
-      "Доступ до всіх 6 модулів курсу",
-      "Записи занять у особистому кабінеті",
-      "Робочий зошит та шаблони портфеля",
-      "Закритий чат випуску",
-      "Сертифікат про проходження",
+      "Повний доступ до всіх 6 модулів програми",
+      "Доступ до матеріалів — 4 місяці",
     ],
-    cta: { label: "Обрати START", href: "#payment-start" },
+    bonuses: START_BONUSES,
+    cta: { label: "Записатися на безкоштовну діагностику", href: "/diagnostics" },
     variant: "base",
   },
   {
     id: "vip",
     name: "VIP",
-    tagline: "Максимум практики із кураторським супроводом",
+    tagline: "Для тих, хто хоче підтримку однодумців та наставника",
     price: "$599",
     oldPrice: "$799",
     features: [
-      "Все, що у тарифі START",
-      "Особистий куратор протягом курсу",
-      "5 групових Q&A-сесій із Юлією",
-      "Розбір вашого реального портфеля",
-      "Шаблони сімейного бюджету та цілей",
-      "Доступ до записів — назавжди",
+      "Бонуси: весь пакет START",
+      "Доступ до матеріалів — 6 місяців",
+      "+ Сертифікат по закінченню навчання",
+      "+ Доступ до клубу випускників назавжди",
+      "Груповий чат зі студентами та куратором (фінансовий радник)",
+      "6 місяців зворотного зв'язку від куратора в груповому чаті",
+      "Участь у груповому розробі інвест. стратегії від куратора",
+      "Особиста допомога під час відкриття брокерського рахунку",
+      "100% гарантія повернення грошей до закінчення першого модуля",
     ],
     cta: { label: "Обрати VIP", href: "#payment-vip" },
     variant: "vip",
-    badge: "Найпопулярніший",
+    badge: "Популярний",
     guarantee: true,
   },
   {
     id: "max",
     name: "MAX",
-    tagline: "Особиста робота з Юлією та закритий клуб BY INVEST",
+    tagline: "Для тих, хто хоче результат з особистою увагою та контролем",
     price: "$1 290",
     oldPrice: "$1 690",
     features: [
-      "Все, що у тарифі VIP",
-      "3 індивідуальні консультації з Юлією",
-      "Складання інвестиційного плану під вас",
-      "Доступ до закритого клубу BY INVEST",
-      "Особисті стратегії та закриті ефіри",
-      "Pre-IPO та інсайти з ринку США",
+      "Бонуси: весь пакет START + VIP",
+      "Доступ до матеріалів — 12 місяців",
+      "+ Сертифікат + Клуб випускників",
+      "Груповий чат + індивідуальний чат з куратором",
+      "Зворотний зв'язок на твою особисту ситуацію",
+      "12 місяців індивідуального супроводу куратора",
+      "Особиста інвест. стратегія під будь-які цілі: накопичення капіталу, дорога покупка тощо",
+      "3 онлайн розбори з куратором протягом навчання за запитом",
+      "1 розбір портфелю та інвест. стратегії від Юлі у вигляді конкретних кроків",
     ],
     cta: { label: "Обрати MAX", href: "#payment-max" },
     variant: "max",
-    badge: "Преміум",
+    badge: "10 місць",
     guarantee: true,
   },
 ];
@@ -91,7 +110,7 @@ function VariantBadge({ t }: { t: Tariff }) {
 
 export default function Tariffs() {
   return (
-    <section id="tariffs" className="section section-white">
+    <section id="pricing" className="section section-white">
       <div className="container-px">
         <div className="mx-auto max-w-[760px] text-center">
           <span className="eyebrow">Тарифи</span>
@@ -168,6 +187,7 @@ export default function Tariffs() {
                   )}
                 </div>
 
+                {/* Main features */}
                 <ul className="mt-6 space-y-3 text-[14px] sm:text-[15px]">
                   {t.features.map((f) => (
                     <li key={f} className="flex items-start gap-2.5">
@@ -183,16 +203,29 @@ export default function Tariffs() {
                       >
                         <Check size={12} strokeWidth={3} />
                       </span>
-                      <span
-                        className={
-                          isDark ? "text-white/95" : "text-text"
-                        }
-                      >
+                      <span className={isDark ? "text-white/95" : "text-text"}>
                         {f}
                       </span>
                     </li>
                   ))}
                 </ul>
+
+                {/* START bonuses block */}
+                {t.bonuses && (
+                  <div className="mt-5 rounded-[14px] border border-sky2/30 bg-sky2/5 p-4">
+                    <div className="mb-3 font-display text-[11px] font-extrabold uppercase tracking-[2px] text-navyDeep">
+                      Бонуси:
+                    </div>
+                    <ul className="space-y-2">
+                      {t.bonuses.map((b) => (
+                        <li key={b} className="flex items-start gap-2 text-[13px] text-text">
+                          <Check size={11} strokeWidth={3} className="mt-0.5 shrink-0 text-sky2" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 <div className="mt-8 flex flex-col gap-2">
                   <Link
@@ -204,26 +237,27 @@ export default function Tariffs() {
                           ? "btn-primary"
                           : "btn-secondary"
                     }
-                    /* TODO: підмінити на реальне посилання оплати (LiqPay/WayForPay/Stripe) */
                   >
                     {t.cta.label}
                   </Link>
-                  <Link
-                    href="/diagnostics"
-                    className={[
-                      "btn-ghost text-[12px] uppercase tracking-[1.5px]",
-                      isDark ? "text-white/80 hover:text-white" : "",
-                    ].join(" ")}
-                  >
-                    або записатися на діагностику →
-                  </Link>
+                  {t.variant !== "base" && (
+                    <Link
+                      href="/diagnostics"
+                      className={[
+                        "btn-ghost text-[12px] uppercase tracking-[1.5px]",
+                        isDark ? "text-white/80 hover:text-white" : "",
+                      ].join(" ")}
+                    >
+                      або записатися на діагностику →
+                    </Link>
+                  )}
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Money-back guarantee — accent under tariffs */}
+        {/* Money-back guarantee */}
         <div className="mt-12 overflow-hidden rounded-[24px] bg-section-blue p-7 sm:p-9 lg:p-10">
           <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-4">
@@ -237,10 +271,9 @@ export default function Tariffs() {
                 <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-text sm:text-[16px]">
                   Для тарифів{" "}
                   <span className="font-bold text-navyDeep">VIP</span> і{" "}
-                  <span className="font-bold text-navyDeep">MAX</span>: якщо ви
-                  пройдете перші 2 модулі, виконаєте домашні завдання і
-                  зрозумієте, що курс вам не підходить — ми повернемо повну
-                  вартість без зайвих питань.
+                  <span className="font-bold text-navyDeep">MAX</span>: діє
+                  100% гарантія повернення коштів до закінчення першого модуля
+                  — без зайвих питань.
                 </p>
               </div>
             </div>
