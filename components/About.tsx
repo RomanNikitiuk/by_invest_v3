@@ -133,7 +133,7 @@ export default function About() {
             </h2>
             <p className="lead mt-5">
               Інвесторка, авторка методики DAAR та публічна фінансова експертка.
-              Понад 3&nbsp;700 студентів пройшли її освітні програми та виходять на
+              Понад 50&nbsp;000 студентів пройшли її освітні програми та виходять на
               стабільний пасивний дохід.
             </p>
 
@@ -161,7 +161,7 @@ export default function About() {
 
             <div className="mt-8">
               <Link href="/diagnostics" className="btn-primary">
-                Безкоштовна діагностика з командою <ArrowRight size={18} />
+                Безкоштовна консультація з командою <ArrowRight size={18} />
               </Link>
             </div>
           </div>

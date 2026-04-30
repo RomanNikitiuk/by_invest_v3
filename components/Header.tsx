@@ -12,8 +12,9 @@ function HeaderCountdown() {
     end.setHours(23, 59, 59, 999);
     return Math.floor((end.getTime() - now.getTime()) / 1000);
   };
-  const [secs, setSecs] = useState(getSecondsLeft);
+  const [secs, setSecs] = useState(0);
   useEffect(() => {
+    setSecs(getSecondsLeft());
     const id = setInterval(() => setSecs(getSecondsLeft()), 1000);
     return () => clearInterval(id);
   }, []);
@@ -84,11 +85,11 @@ export default function Header() {
         <div className="hidden items-center gap-4 lg:flex">
           <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[1px] text-muted">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-sky2" />
-            Безкоштовна діагностика:
+            Безкоштовна консультація:
             <HeaderCountdown />
           </div>
           <Link href="/diagnostics" className="btn-primary">
-            Діагностика <span className="ml-1">→</span>
+            Консультація <span className="ml-1">→</span>
           </Link>
         </div>
 
@@ -119,7 +120,7 @@ export default function Header() {
               onClick={() => setOpen(false)}
               className="btn-primary mt-3"
             >
-              Записатися на діагностику
+              Записатися на консультацію
             </Link>
           </div>
         </div>

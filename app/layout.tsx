@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "BY INVEST — авторський курс із інвестування від Юлії Бєлінської",
   description:
-    "Школа BY finance — навчання інвестуванню з нуля. Три тарифи: START, VIP, MAX. Запис на безкоштовну діагностику та консультацію.",
+    "Школа BY finance — навчання інвестуванню з нуля. Три тарифи: START, VIP, MAX. Запис на безкоштовну консультацію та консультацію.",
   openGraph: {
     title: "BY INVEST — школа фінансової грамотності BY finance",
     description:

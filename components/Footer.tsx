@@ -122,7 +122,7 @@ export default function Footer() {
                   href="/diagnostics"
                   className="text-text transition-colors hover:text-sky2"
                 >
-                  Записатися на діагностику
+                  Записатися на консультацію
                 </Link>
               </li>
             </ul>

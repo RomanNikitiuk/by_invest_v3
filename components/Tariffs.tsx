@@ -41,7 +41,7 @@ const TARIFFS: Tariff[] = [
       "Доступ до матеріалів — 4 місяці",
     ],
     bonuses: START_BONUSES,
-    cta: { label: "Записатися на безкоштовну діагностику", href: "/diagnostics" },
+    cta: { label: "Записатися на безкоштовну консультацію", href: "/diagnostics" },
     variant: "base",
   },
   {
@@ -248,7 +248,7 @@ export default function Tariffs() {
                         isDark ? "text-white/80 hover:text-white" : "",
                       ].join(" ")}
                     >
-                      або записатися на діагностику →
+                      або записатися на консультацію →
                     </Link>
                   )}
                 </div>
@@ -278,7 +278,7 @@ export default function Tariffs() {
               </div>
             </div>
             <Link href="/diagnostics" className="btn-primary shrink-0">
-              Записатися на діагностику
+              Записатися на консультацію
             </Link>
           </div>
         </div>

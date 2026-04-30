@@ -12,9 +12,10 @@ function Countdown() {
     return Math.floor((end.getTime() - now.getTime()) / 1000);
   };
 
-  const [secs, setSecs] = useState(getSecondsLeft);
+  const [secs, setSecs] = useState(0);
 
   useEffect(() => {
+    setSecs(getSecondsLeft());
     const id = setInterval(() => setSecs(getSecondsLeft()), 1000);
     return () => clearInterval(id);
   }, []);
@@ -51,7 +52,7 @@ export default function CTASection() {
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-navyDeep px-4 py-1.5 text-[12px] font-bold uppercase tracking-[1.5px] text-white">
                 <span className="h-1.5 w-1.5 rounded-full bg-sky1" />
-                Діагностика · 1 на 1
+                Консультація · 1 на 1
               </span>
 
               <h2 className="mt-5 font-display text-[clamp(1.6rem,3vw,2.4rem)] font-extrabold leading-tight tracking-[-0.02em] text-textDark">
@@ -60,9 +61,12 @@ export default function CTASection() {
               </h2>
 
               <p className="mt-4 text-[15px] leading-relaxed text-muted">
-                За 30 хв простими словами покажемо, що у тебе зараз не працює в
-                грошах, і як це виправити. Зустріч проходить один на один з нашим
-                фахівцем.
+                Записуйтесь на безкоштовну консультацію, щоб дізнатися деталі
+                навчання та отримати чіткі поради у вигляді кроків для старту в
+                інвестуванні —{" "}
+                <span className="text-sky2 font-medium">
+                  особливо якщо є страх почати, бо немає розуміння чи вам це підійде
+                </span>
               </p>
 
               <div className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -83,7 +87,7 @@ export default function CTASection() {
                   <div className="flex items-center gap-2">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-sky2" />
                     <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-muted">
-                      До кінця безкоштовної<br />діагностики
+                      До кінця безкоштовної<br />консультації
                     </span>
                   </div>
                   <Countdown />
@@ -95,13 +99,10 @@ export default function CTASection() {
                 href="/diagnostics"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-navyDeep px-8 py-4 font-display text-[15px] font-extrabold text-white shadow-card transition-all hover:-translate-y-0.5 hover:shadow-cardHover lg:w-auto"
               >
-                Записатися на безкоштовну діагностику
+                Записатися на безкоштовну консультацію
                 <ArrowRight size={18} />
               </Link>
 
-              <p className="text-[12px] font-medium uppercase tracking-[1.8px] text-muted">
-                30 хв · Zoom · Безкоштовно
-              </p>
             </div>
 
           </div>

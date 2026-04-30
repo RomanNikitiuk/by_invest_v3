@@ -30,7 +30,7 @@ export default function Hero() {
 
             {/* H1 — display */}
             <h1 className="mt-7 font-display text-[clamp(2.4rem,6vw,5.2rem)] leading-[1.02] tracking-[-0.02em] text-textDark">
-              <span className="italic text-sky2">BY INVEST 3.0</span>
+              <span className="font-medium text-sky2">BY INVEST 3.0</span>
               <span className="mt-4 block text-[0.4em] font-sans font-normal not-italic leading-snug tracking-tight text-muted">
                 від школи інвестицій та фінансової грамотності{" "}
                 <span className="font-semibold text-sky2">BY FINANCE</span>
@@ -38,7 +38,7 @@ export default function Hero() {
             </h1>
 
             {/* H2 */}
-            <h2 className="mt-8 font-display text-2xl leading-snug text-textDark/90 md:text-3xl">
+            <h2 className="mt-8 font-display text-2xl font-medium leading-snug text-textDark/90 md:text-3xl">
               Як сформувати{" "}
               <span className="text-sky2">капітал</span> в довгострок та вийти
               на стабільний пасивний дохід{" "}
@@ -63,7 +63,7 @@ export default function Hero() {
             {/* CTAs */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link href="/diagnostics" className="btn-primary">
-                Записатися на безкоштовну діагностику
+                Записатися на безкоштовну консультацію
               </Link>
               <Link
                 href="#program"

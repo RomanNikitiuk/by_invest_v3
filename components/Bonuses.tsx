@@ -151,8 +151,7 @@ export default function Bonuses() {
                 </span>
               </h2>
               <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/85">
-                Лише для тих, хто записується на потік. Закриті матеріали,
-                додаткові ефіри, шаблони та особисті ресурси команди BY finance.
+                Закриті матеріали, додаткові ефіри, шаблони та особисті ресурси команди BY finance.
               </p>
             </div>
             <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white2 text-navyDeep shadow-card">
@@ -214,7 +213,7 @@ export default function Bonuses() {
                 Бонус після курсу
               </div>
               <div className="mt-1 font-display text-[18px] font-extrabold leading-snug text-navyDeep sm:text-[20px]">
-                Закритий клуб з випускниками-однодумцями
+                Закритий клуб з випускниками-однодумцями{" "}
                 <br className="hidden sm:block" />
                 та командою курсу — щоб капітал зростав швидше
               </div>

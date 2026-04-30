@@ -54,7 +54,7 @@ function Carousel<T>({
   };
 
   return (
-    <div>
+    <div className="min-w-0 overflow-hidden">
       <div
         ref={trackRef}
         aria-label={ariaLabel}
@@ -63,8 +63,8 @@ function Carousel<T>({
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="w-full shrink-0 snap-start"
-            style={{ flexBasis: "100%" }}
+            className="shrink-0 snap-start"
+            style={{ flexBasis: "100%", minWidth: "100%" }}
           >
             {renderItem(item, idx)}
           </div>
@@ -132,7 +132,7 @@ export default function Reviews() {
                 <div className="card p-4">
                   {/* TODO: замінити на <Image src=".../{screenshot}" .../> */}
                   <div
-                    className="grid aspect-[4/5] place-items-center rounded-[18px] border border-line"
+                    className="grid aspect-[3/2] place-items-center rounded-[18px] border border-line sm:aspect-[4/5]"
                     style={{
                       background:
                         "linear-gradient(174deg, #eff6fc 0%, #d6ecfc 100%)",

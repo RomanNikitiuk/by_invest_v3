@@ -75,7 +75,7 @@ export default function DiagnosticsPage() {
           <div className="grid gap-12 lg:grid-cols-12">
             {/* Side info */}
             <aside className="lg:col-span-5">
-              <span className="eyebrow">Безкоштовна діагностика</span>
+              <span className="eyebrow">Безкоштовна консультація</span>
               <h1 className="h1 mt-5">
                 Залиште заявку — ми зателефонуємо протягом{" "}
                 <span className="title-gradient">24 годин</span>
@@ -110,7 +110,7 @@ export default function DiagnosticsPage() {
                 </div>
                 <p className="mt-3 text-[13px] leading-relaxed text-muted">
                   Ми зберігаємо ваші контакти лише для того, щоб звʼязатися та
-                  провести діагностику. Не передаємо третім особам.
+                  провести консультацію. Не передаємо третім особам.
                 </p>
               </div>
             </aside>
@@ -223,7 +223,7 @@ export default function DiagnosticsPage() {
                     >
                       {loading
                         ? "Відправляємо..."
-                        : "Записатися на діагностику"}
+                        : "Записатися на консультацію"}
                     </button>
 
                     <p className="text-center text-[11px] leading-relaxed text-muted">
