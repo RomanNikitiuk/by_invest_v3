@@ -30,16 +30,37 @@ const COUNTRY_CODES = [
 export default function DiagnosticsPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    // TODO: підключити бекенд / Formspree / Telegram-бот / CRM
-    // Поки що — імітація відправки і показ "Дякуємо".
-    setTimeout(() => {
-      setLoading(false);
+    setError("");
+
+    const form = e.currentTarget;
+    const data = {
+      name:     (form.elements.namedItem("name")        as HTMLInputElement).value,
+      phone:    (form.elements.namedItem("countryCode") as HTMLSelectElement).value +
+                " " +
+                (form.elements.namedItem("phone")       as HTMLInputElement).value,
+      telegram: (form.elements.namedItem("telegram")    as HTMLInputElement).value,
+      location: (form.elements.namedItem("location")    as HTMLInputElement).value,
+      question: (form.elements.namedItem("question")    as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch("/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("server error");
       setSubmitted(true);
-    }, 700);
+    } catch {
+      setError("Щось пішло не так. Спробуй ще раз або напиши нам у Telegram.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -220,6 +241,11 @@ export default function DiagnosticsPage() {
                       </Link>{" "}
                       та обробкою персональних даних.
                     </p>
+                    {error && (
+                      <p className="rounded-xl bg-red-50 px-4 py-3 text-center text-[13px] text-red-600">
+                        {error}
+                      </p>
+                    )}
                   </form>
                 )}
               </div>
