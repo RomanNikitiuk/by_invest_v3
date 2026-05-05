@@ -77,29 +77,13 @@ export default function DiagnosticsPage() {
             <aside className="lg:col-span-5">
               <span className="eyebrow">Безкоштовна консультація</span>
               <h1 className="h1 mt-5">
-                Залиште заявку — ми зателефонуємо протягом{" "}
+                Залиште заявку — ми звʼяжемося протягом{" "}
                 <span className="title-gradient">24 годин</span>
               </h1>
               <p className="lead mt-5">
-                У 30-хвилинній розмові разом визначимо точку старту, ціль,
-                підберемо тариф та подаруємо чек-лист «Перші кроки інвестора».
+                У 30-хвилинній розмові разом визначимо точку старту, ціль
+                та підберемо тариф.
               </p>
-
-              <ul className="mt-8 space-y-4 text-[14px] sm:text-[15px]">
-                {[
-                  "Поговоримо з куратором, а не з ботом",
-                  "Розберемо вашу ситуацію без оцінок і тиску",
-                  "Підкажемо тариф, який реально підходить",
-                  "Жодних спам-дзвінків — лише по записаному часу",
-                ].map((t) => (
-                  <li key={t} className="flex items-start gap-3">
-                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-sky-gradient text-navyDeep shadow-sky">
-                      <CheckCircle2 size={14} strokeWidth={2.5} />
-                    </span>
-                    <span className="text-text">{t}</span>
-                  </li>
-                ))}
-              </ul>
 
               <div className="mt-10 rounded-[20px] border border-line bg-white2 p-6 shadow-card">
                 <div className="flex items-center gap-2.5 font-display text-[14px] font-extrabold uppercase tracking-[1.5px] text-navyDeep">

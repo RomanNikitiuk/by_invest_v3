@@ -7,6 +7,7 @@ type Tariff = {
   tagline: string;
   price: string;
   oldPrice?: string;
+  salePrice?: string;
   features: string[];
   bonuses?: string[];
   cta: { label: string; href: string };
@@ -34,22 +35,22 @@ const TARIFFS: Tariff[] = [
     id: "start",
     name: "START",
     tagline: "Для тих, хто хоче розібратись самостійно у своєму темпі",
-    price: "$299",
-    oldPrice: "$399",
+    price: "$650",
+    salePrice: "$520",
     features: [
       "Повний доступ до всіх 6 модулів програми",
       "Доступ до матеріалів — 4 місяці",
     ],
     bonuses: START_BONUSES,
-    cta: { label: "Записатися на безкоштовну консультацію", href: "/diagnostics" },
+    cta: { label: "Обрати START", href: "/diagnostics" },
     variant: "base",
   },
   {
     id: "vip",
     name: "VIP",
     tagline: "Для тих, хто хоче підтримку однодумців та наставника",
-    price: "$599",
-    oldPrice: "$799",
+    price: "$950",
+    salePrice: "$690",
     features: [
       "Бонуси: весь пакет START",
       "Доступ до матеріалів — 6 місяців",
@@ -70,8 +71,8 @@ const TARIFFS: Tariff[] = [
     id: "max",
     name: "MAX",
     tagline: "Для тих, хто хоче результат з особистою увагою та контролем",
-    price: "$1 290",
-    oldPrice: "$1 690",
+    price: "$1 600",
+    salePrice: "$1 290",
     features: [
       "Бонуси: весь пакет START + VIP",
       "Доступ до матеріалів — 12 місяців",
@@ -166,27 +167,6 @@ export default function Tariffs() {
                   )}
                 </div>
 
-                <div className="mt-6 flex items-baseline gap-3">
-                  <div
-                    className={[
-                      "font-display text-[40px] font-extrabold leading-none",
-                      isDark ? "text-white" : "text-textDark",
-                    ].join(" ")}
-                  >
-                    {t.price}
-                  </div>
-                  {t.oldPrice && (
-                    <div
-                      className={[
-                        "text-[15px] line-through",
-                        isDark ? "text-white/50" : "text-muted",
-                      ].join(" ")}
-                    >
-                      {t.oldPrice}
-                    </div>
-                  )}
-                </div>
-
                 {/* Main features */}
                 <ul className="mt-6 space-y-3 text-[14px] sm:text-[15px]">
                   {t.features.map((f) => (
@@ -227,31 +207,56 @@ export default function Tariffs() {
                   </div>
                 )}
 
-                <div className="mt-8 flex flex-col gap-2">
-                  <Link
-                    href={t.cta.href}
-                    className={
-                      t.variant === "base"
-                        ? "btn-outline"
-                        : t.variant === "vip"
-                          ? "btn-primary"
-                          : "btn-secondary"
-                    }
+                {/* Price block — bottom */}
+                <div className="mt-8 border-t border-line/50 pt-6">
+                  {/* Strikethrough original price */}
+                  <div
+                    className={[
+                      "text-[16px] font-semibold line-through",
+                      isDark ? "text-white/40" : "text-muted",
+                    ].join(" ")}
                   >
-                    {t.cta.label}
-                  </Link>
-                  {t.variant !== "base" && (
-                    <Link
-                      href="/diagnostics"
-                      className={[
-                        "btn-ghost text-[12px] uppercase tracking-[1.5px]",
-                        isDark ? "text-white/80 hover:text-white" : "",
-                      ].join(" ")}
-                    >
-                      або записатися на консультацію →
-                    </Link>
+                    {t.price}
+                  </div>
+
+                  {/* Sale price + booking text */}
+                  {t.salePrice && (
+                    <div className="mt-2 grid grid-cols-[auto_1fr] items-center gap-3">
+                      <div
+                        className={[
+                          "font-display text-[38px] font-extrabold leading-none",
+                          isDark ? "text-white" : "text-textDark",
+                        ].join(" ")}
+                      >
+                        {t.salePrice}
+                      </div>
+                      <p
+                        className={[
+                          "text-[12px] leading-relaxed",
+                          isDark ? "text-white/70" : "text-muted",
+                        ].join(" ")}
+                      >
+                        Забронюй за собою місце за{" "}
+                        <span className={["font-bold", isDark ? "text-sky1" : "text-navyDeep"].join(" ")}>
+                          {t.salePrice}
+                        </span>
+                        , залишивши заявку на консультацію
+                      </p>
+                    </div>
                   )}
+
+                  {/* Book CTA */}
+                  <Link
+                    href="/diagnostics"
+                    className={[
+                      "mt-5 block",
+                      isDark ? "btn-secondary" : "btn-primary",
+                    ].join(" ")}
+                  >
+                    Забронювати місце
+                  </Link>
                 </div>
+
               </div>
             );
           })}
