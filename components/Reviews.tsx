@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -110,46 +110,43 @@ function Carousel<T>({
   renderItem: (item: T, idx: number) => React.ReactNode;
   ariaLabel: string;
 }) {
-  const trackRef = useRef<HTMLDivElement>(null);
+  const [current, setCurrent] = useState(0);
 
-  const scrollBy = (dir: 1 | -1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollBy({ left: el.clientWidth * dir, behavior: "smooth" });
-  };
+  const prev = () => setCurrent((i) => Math.max(0, i - 1));
+  const next = () => setCurrent((i) => Math.min(items.length - 1, i + 1));
 
   return (
-    <div className="min-w-0 overflow-hidden">
-      <div
-        ref={trackRef}
-        aria-label={ariaLabel}
-        className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
-      >
+    <div className="w-full" aria-label={ariaLabel}>
+      {/* Slides — show only active */}
+      <div className="relative">
         {items.map((item, idx) => (
-          <div
-            key={idx}
-            className="shrink-0 snap-start"
-            style={{ flexBasis: "100%", minWidth: "100%" }}
-          >
+          <div key={idx} className={idx === current ? "block" : "hidden"}>
             {renderItem(item, idx)}
           </div>
         ))}
       </div>
-      <div className="mt-5 flex gap-2">
+
+      {/* Controls */}
+      <div className="mt-5 flex items-center gap-3">
         <button
-          onClick={() => scrollBy(-1)}
+          onClick={prev}
+          disabled={current === 0}
           aria-label="Попередній"
-          className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:shadow-sky"
+          className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:shadow-sky disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
           <ArrowLeft size={16} />
         </button>
         <button
-          onClick={() => scrollBy(1)}
+          onClick={next}
+          disabled={current === items.length - 1}
           aria-label="Наступний"
-          className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:shadow-sky"
+          className="grid h-11 w-11 place-items-center rounded-full border border-sky2 bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:shadow-sky disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
           <ArrowRight size={16} />
         </button>
+        <span className="text-[13px] text-muted">
+          {current + 1} / {items.length}
+        </span>
       </div>
     </div>
   );
@@ -194,7 +191,7 @@ export default function Reviews() {
               ariaLabel="Відгуки з Telegram"
               items={TG_REVIEWS}
               renderItem={(r, idx) => (
-                <div className="relative rounded-[22px] border border-line bg-white p-5 sm:p-7">
+                <div className="relative min-w-0 overflow-hidden rounded-[22px] border border-line bg-white p-5 sm:p-7">
                   <div className="mb-4 flex items-center gap-3">
                     <div
                       className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[13px] font-extrabold text-white"
@@ -232,16 +229,22 @@ export default function Reviews() {
                 <PlayCircle size={14} />
                 Виступи на телебаченні
               </span>
-              <span className="ml-auto text-[13px] text-muted">
-                {YT_VIDEOS.length} ефірів
-              </span>
+              <a
+                href="https://www.youtube.com/@byfinance"
+                target="_blank"
+                rel="noreferrer"
+                className="ml-auto inline-flex items-center gap-1.5 text-[13px] font-semibold text-navyDeep transition-colors hover:text-sky2"
+              >
+                Відкрити канал
+                <ExternalLink size={13} />
+              </a>
             </div>
 
             <Carousel
               ariaLabel="Випуски з YouTube"
               items={YT_VIDEOS}
               renderItem={(v) => (
-                <div className="relative rounded-[22px] border border-line bg-white p-4 sm:p-7">
+                <div className="relative min-w-0 overflow-hidden rounded-[22px] border border-line bg-white p-4 sm:p-7">
                   <div className="overflow-hidden rounded-[18px] border border-line">
                     <div className="aspect-video">
                       <iframe

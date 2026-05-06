@@ -11,6 +11,7 @@ type Tariff = {
   features: string[];
   bonuses?: string[];
   cta: { label: string; href: string };
+  bookHref: string;
   variant: "base" | "vip" | "max";
   badge?: string;
   guarantee?: boolean;
@@ -42,8 +43,9 @@ const TARIFFS: Tariff[] = [
       "Доступ до матеріалів — 4 місяці",
     ],
     bonuses: START_BONUSES,
-    cta: { label: "Обрати START", href: "/diagnostics" },
+    cta: { label: "Обрати START", href: "https://secure.wayforpay.com/payment/se54c1900da3d" },
     variant: "base",
+    bookHref: "https://secure.wayforpay.com/payment/se54c1900da3d",
   },
   {
     id: "vip",
@@ -62,10 +64,11 @@ const TARIFFS: Tariff[] = [
       "Особиста допомога під час відкриття брокерського рахунку",
       "100% гарантія повернення грошей до закінчення першого модуля",
     ],
-    cta: { label: "Обрати VIP", href: "#payment-vip" },
+    cta: { label: "Обрати VIP", href: "https://secure.wayforpay.com/payment/sb0eeb131e7de" },
     variant: "vip",
     badge: "Популярний",
     guarantee: true,
+    bookHref: "https://secure.wayforpay.com/payment/sb0eeb131e7de",
   },
   {
     id: "max",
@@ -84,10 +87,11 @@ const TARIFFS: Tariff[] = [
       "3 онлайн розбори з куратором протягом навчання за запитом",
       "1 розбір портфелю та інвест. стратегії від Юлі у вигляді конкретних кроків",
     ],
-    cta: { label: "Обрати MAX", href: "#payment-max" },
+    cta: { label: "Обрати MAX", href: "https://secure.wayforpay.com/payment/s08df71de0a97" },
     variant: "max",
     badge: "10 місць",
     guarantee: true,
+    bookHref: "https://secure.wayforpay.com/payment/s08df71de0a97",
   },
 ];
 
@@ -140,74 +144,77 @@ export default function Tariffs() {
               <div key={t.id} className={variantClass}>
                 <VariantBadge t={t} />
 
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <div
-                      className={[
-                        "font-display text-[26px] font-extrabold tracking-tight",
-                        isDark ? "text-white" : "text-textDark",
-                      ].join(" ")}
-                    >
-                      {t.name}
+                {/* Top content — grows to fill card, keeps price block at bottom */}
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div
+                        className={[
+                          "font-display text-[26px] font-extrabold tracking-tight",
+                          isDark ? "text-white" : "text-textDark",
+                        ].join(" ")}
+                      >
+                        {t.name}
+                      </div>
+                      <div
+                        className={[
+                          "mt-1 text-[14px]",
+                          isDark ? "text-white/75" : "text-muted",
+                        ].join(" ")}
+                      >
+                        {t.tagline}
+                      </div>
                     </div>
-                    <div
-                      className={[
-                        "mt-1 text-[14px]",
-                        isDark ? "text-white/75" : "text-muted",
-                      ].join(" ")}
-                    >
-                      {t.tagline}
-                    </div>
+                    {t.variant !== "base" && (
+                      <Sparkles
+                        size={20}
+                        className={isDark ? "text-sky1" : "text-sky2"}
+                      />
+                    )}
                   </div>
-                  {t.variant !== "base" && (
-                    <Sparkles
-                      size={20}
-                      className={isDark ? "text-sky1" : "text-sky2"}
-                    />
+
+                  {/* Main features */}
+                  <ul className="mt-6 space-y-3 text-[14px] sm:text-[15px]">
+                    {t.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2.5">
+                        <span
+                          className={[
+                            "tariff-feature-icon mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full",
+                            t.variant === "base"
+                              ? "bg-blue50 text-navyDeep"
+                              : t.variant === "vip"
+                                ? "bg-sky-gradient text-navyDeep"
+                                : "",
+                          ].join(" ")}
+                        >
+                          <Check size={12} strokeWidth={3} />
+                        </span>
+                        <span className={isDark ? "text-white/95" : "text-text"}>
+                          {f}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* START bonuses block */}
+                  {t.bonuses && (
+                    <div className="mt-5 rounded-[14px] border border-sky2/30 bg-sky2/5 p-4">
+                      <div className="mb-3 font-display text-[11px] font-extrabold uppercase tracking-[2px] text-navyDeep">
+                        Бонуси:
+                      </div>
+                      <ul className="space-y-2">
+                        {t.bonuses.map((b) => (
+                          <li key={b} className="flex items-start gap-2 text-[13px] text-text">
+                            <Check size={11} strokeWidth={3} className="mt-0.5 shrink-0 text-sky2" />
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                 </div>
 
-                {/* Main features */}
-                <ul className="mt-6 space-y-3 text-[14px] sm:text-[15px]">
-                  {t.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5">
-                      <span
-                        className={[
-                          "tariff-feature-icon mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full",
-                          t.variant === "base"
-                            ? "bg-blue50 text-navyDeep"
-                            : t.variant === "vip"
-                              ? "bg-sky-gradient text-navyDeep"
-                              : "",
-                        ].join(" ")}
-                      >
-                        <Check size={12} strokeWidth={3} />
-                      </span>
-                      <span className={isDark ? "text-white/95" : "text-text"}>
-                        {f}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* START bonuses block */}
-                {t.bonuses && (
-                  <div className="mt-5 rounded-[14px] border border-sky2/30 bg-sky2/5 p-4">
-                    <div className="mb-3 font-display text-[11px] font-extrabold uppercase tracking-[2px] text-navyDeep">
-                      Бонуси:
-                    </div>
-                    <ul className="space-y-2">
-                      {t.bonuses.map((b) => (
-                        <li key={b} className="flex items-start gap-2 text-[13px] text-text">
-                          <Check size={11} strokeWidth={3} className="mt-0.5 shrink-0 text-sky2" />
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Price block — bottom */}
+                {/* Price block — always has fixed gap from content above */}
                 <div className="mt-8 border-t border-line/50 pt-6">
                   {/* Strikethrough original price */}
                   <div
@@ -247,7 +254,9 @@ export default function Tariffs() {
 
                   {/* Book CTA */}
                   <Link
-                    href="/diagnostics"
+                    href={t.bookHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={[
                       "mt-5 block",
                       isDark ? "btn-secondary" : "btn-primary",

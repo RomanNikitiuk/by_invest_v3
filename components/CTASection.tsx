@@ -57,7 +57,7 @@ export default function CTASection() {
 
               <h2 className="mt-5 font-display text-[clamp(1.6rem,3vw,2.4rem)] font-extrabold leading-tight tracking-[-0.02em] text-textDark">
                 Дізнайся більше про{" "}
-                <span className="title-gradient italic">«BY INVEST 3.0»</span>
+                <span className="title-gradient">«BY INVEST 3.0»</span>
               </h2>
 
               <p className="mt-4 text-[15px] leading-relaxed text-muted">

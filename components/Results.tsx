@@ -7,33 +7,28 @@ import { Award, Medal, Trophy } from "lucide-react";
 const AWARDS = [
   {
     icon: Trophy,
-    title: "Топ-3 фінансових шкіл України",
-    by: "Forbes Ukraine, 2023",
+    title: "Премія за розвиток дитячої фінансової грамотності",
+    by: "FinBloggerAwards, 2023",
   },
   {
     icon: Award,
-    title: "Освітній проєкт року",
-    by: "Премія «Жінка року», 2022",
+    title: "Премія за розвиток дитячої фінансової грамотності",
+    by: "FinBloggerAwards, 2024",
   },
   {
     icon: Medal,
-    title: "Учитель року з фінансової грамотності",
-    by: "EdTech Awards UA, 2024",
+    title: "Найкращий соціально-відповідальний інвестиційний проєкт",
+    by: "FinBloggerAwards, 2024",
   },
   {
     icon: Trophy,
-    title: "Найкращий онлайн-курс із інвестицій",
-    by: "WOMO Awards, 2023",
+    title: "Найвпливовіший інвестиційний інфлюенсер",
+    by: "FinBloggerAwards, 2024",
   },
   {
     icon: Award,
-    title: "Експерт року в медіа",
-    by: "BIG Money Awards, 2024",
-  },
-  {
-    icon: Medal,
-    title: "ТОП-10 жінок-лідерок фінансової освіти",
-    by: "NV Бізнес, 2023",
+    title: "Інфлюенсер року інвестиційного ринку",
+    by: "FinAwards, 2025",
   },
 ];
 
@@ -53,7 +48,7 @@ export default function Results() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 [&>*:last-child]:sm:col-span-2 [&>*:last-child]:lg:col-span-1">
           {AWARDS.map(({ icon: Icon, title, by }, i) => (
             <div
               key={i}

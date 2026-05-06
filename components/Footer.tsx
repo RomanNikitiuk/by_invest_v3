@@ -34,7 +34,7 @@ export default function Footer() {
                 <Send size={16} />
               </a>
               <a
-                href="https://www.youtube.com/"
+                href="https://www.youtube.com/@byfinance"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="YouTube"
@@ -43,7 +43,7 @@ export default function Footer() {
                 <Youtube size={16} />
               </a>
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/yulia.batkalova"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"

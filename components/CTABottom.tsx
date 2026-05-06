@@ -80,7 +80,7 @@ export default function CTABottom() {
             {/* Heading */}
             <h2 className="font-display max-w-3xl text-[clamp(2rem,5vw,3.6rem)] font-extrabold leading-[1.06] tracking-[-0.02em] text-white">
               Не чекайте, поки{" "}
-              <span className="italic text-sky2">інфляція</span>
+              <span className="text-sky2">інфляція</span>
               <br />
               знецінить ваші зусилля
             </h2>
