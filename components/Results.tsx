@@ -1,4 +1,4 @@
-import { Award, Medal, Trophy } from "lucide-react";
+import { Award, GraduationCap, Medal, Trophy } from "lucide-react";
 
 /**
  * TODO: додати додаткові нагороди школи зі старого сайту:
@@ -30,6 +30,11 @@ const AWARDS = [
     title: "Інфлюенсер року інвестиційного ринку",
     by: "FinAwards, 2025",
   },
+  {
+    icon: GraduationCap,
+    title: "Випускники школи",
+    by: "Понад 50 000+ студентів пройшли навчання",
+  },
 ];
 
 export default function Results() {
@@ -48,7 +53,7 @@ export default function Results() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 [&>*:last-child]:sm:col-span-2 [&>*:last-child]:lg:col-span-1">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {AWARDS.map(({ icon: Icon, title, by }, i) => (
             <div
               key={i}

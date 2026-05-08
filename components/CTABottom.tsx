@@ -72,13 +72,13 @@ export default function CTABottom() {
 
           <div className="relative flex flex-col items-center gap-8">
             {/* Badge */}
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[2px] text-white/80 backdrop-blur-sm">
+            <span className="eyebrow-inv">
               <span className="h-1.5 w-1.5 rounded-full bg-sky1" />
               Важливо
             </span>
 
             {/* Heading */}
-            <h2 className="font-display max-w-3xl text-[clamp(2rem,5vw,3.6rem)] font-extrabold leading-[1.06] tracking-[-0.02em] text-white">
+            <h2 className="h2 max-w-3xl text-white">
               Не чекайте, поки{" "}
               <span className="text-sky2">інфляція</span>
               <br />
@@ -86,7 +86,7 @@ export default function CTABottom() {
             </h2>
 
             {/* Description */}
-            <p className="max-w-xl text-[17px] leading-relaxed text-white/70">
+            <p className="lead max-w-xl text-white/70">
               Запишіться на безкоштовну консультацію та дізнайтесь усі деталі
               навчання, поточну ціну та доступні бонуси цього потоку
             </p>
@@ -97,10 +97,15 @@ export default function CTABottom() {
             {/* CTA button */}
             <Link
               href="/diagnostics"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-9 py-4 font-display text-[15px] font-extrabold text-navyDeep shadow-card transition-all hover:-translate-y-0.5 hover:shadow-cardHover"
+              className="inline-flex flex-col items-center gap-0.5 rounded-full bg-white px-9 py-4 font-display text-[15px] font-extrabold text-navyDeep shadow-card transition-all hover:-translate-y-0.5 hover:shadow-cardHover"
             >
-              Записатися на безкоштовну консультацію
-              <ArrowRight size={18} />
+              <span className="flex items-center gap-2">
+                Записатися на безкоштовну консультацію
+                <ArrowRight size={18} />
+              </span>
+              <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-50">
+                Для початківців в інвестиціях
+              </span>
             </Link>
 
             {/* Trust line */}

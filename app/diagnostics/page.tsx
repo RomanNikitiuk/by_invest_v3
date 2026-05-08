@@ -97,7 +97,7 @@ export default function DiagnosticsPage() {
             {/* Side info */}
             <aside className="lg:col-span-5">
               <span className="eyebrow">Безкоштовна консультація</span>
-              <h1 className="h1 mt-5">
+              <h1 className="h2 mt-5">
                 Залиште заявку — ми звʼяжемося протягом{" "}
                 <span className="title-gradient">24 годин</span>
               </h1>
@@ -224,11 +224,14 @@ export default function DiagnosticsPage() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="btn-primary mt-2 w-full justify-center disabled:opacity-60"
+                      className="btn-primary mt-2 w-full flex-col items-center gap-0.5 justify-center disabled:opacity-60"
                     >
-                      {loading
-                        ? "Відправляємо..."
-                        : "Записатися на консультацію"}
+                      {loading ? "Відправляємо..." : "Записатися на консультацію"}
+                      {!loading && (
+                        <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
+                          Для початківців в інвестиціях
+                        </span>
+                      )}
                     </button>
 
                     <p className="text-center text-[11px] leading-relaxed text-muted">

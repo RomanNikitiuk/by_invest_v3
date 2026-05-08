@@ -88,8 +88,11 @@ export default function Header() {
             Безкоштовна консультація:
             <HeaderCountdown />
           </div>
-          <Link href="/diagnostics" className="btn-primary">
-            Консультація <span className="ml-1">→</span>
+          <Link href="/diagnostics" className="btn-primary flex-col items-center gap-0 text-center">
+            <span>Консультація →</span>
+            <span className="text-[9px] font-semibold uppercase tracking-[1px] opacity-70 leading-none">
+              Для початківців в інвестиціях
+            </span>
           </Link>
         </div>
 
@@ -118,9 +121,12 @@ export default function Header() {
             <Link
               href="/diagnostics"
               onClick={() => setOpen(false)}
-              className="btn-primary mt-3"
+              className="btn-primary mt-3 flex-col items-center gap-0 text-center"
             >
-              Записатися на консультацію
+              <span>Записатися на консультацію</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[1px] opacity-70 leading-none">
+                Для початківців в інвестиціях
+              </span>
             </Link>
           </div>
         </div>

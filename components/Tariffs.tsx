@@ -291,8 +291,11 @@ export default function Tariffs() {
                 </p>
               </div>
             </div>
-            <Link href="/diagnostics" className="btn-primary shrink-0">
+            <Link href="/diagnostics" className="btn-primary shrink-0 flex-col items-center gap-0.5 text-center">
               Записатися на консультацію
+              <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
+                Для початківців в інвестиціях
+              </span>
             </Link>
           </div>
         </div>

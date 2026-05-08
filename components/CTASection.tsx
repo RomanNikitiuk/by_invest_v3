@@ -50,17 +50,17 @@ export default function CTASection() {
 
             {/* Left */}
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-navyDeep px-4 py-1.5 text-[12px] font-bold uppercase tracking-[1.5px] text-white">
-                <span className="h-1.5 w-1.5 rounded-full bg-sky1" />
+              <span className="eyebrow">
+                <span className="h-1.5 w-1.5 rounded-full bg-sky2" />
                 Консультація · 1 на 1
               </span>
 
-              <h2 className="mt-5 font-display text-[clamp(1.6rem,3vw,2.4rem)] font-extrabold leading-tight tracking-[-0.02em] text-textDark">
+              <h2 className="h2 mt-5">
                 Дізнайся більше про{" "}
                 <span className="title-gradient">«BY INVEST 3.0»</span>
               </h2>
 
-              <p className="mt-4 text-[15px] leading-relaxed text-muted">
+              <p className="lead mt-4">
                 Записуйтесь на безкоштовну консультацію, щоб дізнатися деталі
                 навчання та отримати чіткі поради у вигляді кроків для старту в
                 інвестуванні —{" "}
@@ -97,10 +97,15 @@ export default function CTASection() {
               {/* CTA button */}
               <Link
                 href="/diagnostics"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-navyDeep px-8 py-4 font-display text-[15px] font-extrabold text-white shadow-card transition-all hover:-translate-y-0.5 hover:shadow-cardHover lg:w-auto"
+                className="flex w-full flex-col items-center justify-center gap-0.5 rounded-full bg-navyDeep px-8 py-4 font-display text-[15px] font-extrabold text-white shadow-card transition-all hover:-translate-y-0.5 hover:shadow-cardHover lg:w-auto"
               >
-                Записатися на безкоштовну консультацію
-                <ArrowRight size={18} />
+                <span className="flex items-center justify-center gap-2 text-center">
+                  Записатися на безкоштовну консультацію
+                  <ArrowRight size={18} className="shrink-0" />
+                </span>
+                <span className="text-center text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
+                  Для початківців в інвестиціях
+                </span>
               </Link>
 
             </div>

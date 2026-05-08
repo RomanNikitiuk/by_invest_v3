@@ -172,7 +172,7 @@ export default function Reviews() {
           {/* TELEGRAM REVIEWS */}
           <div>
             <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full bg-sky2/15 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[1.5px] text-navyDeep">
+              <span className="eyebrow">
                 <Send size={14} />
                 Відгуки з Telegram
               </span>
@@ -225,7 +225,7 @@ export default function Reviews() {
           {/* TV / YOUTUBE */}
           <div>
             <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full bg-sky2/15 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[1.5px] text-navyDeep">
+              <span className="eyebrow">
                 <PlayCircle size={14} />
                 Виступи на телебаченні
               </span>

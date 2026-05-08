@@ -28,25 +28,27 @@ export default function Hero() {
               BY FINANCE · ШКОЛА ІНВЕСТИЦІЙ
             </span>
 
-            {/* H1 — display */}
-            <h1 className="mt-7 font-display text-[clamp(2.4rem,6vw,5.2rem)] leading-[1.02] tracking-[-0.02em] text-textDark">
-              <span className="font-extrabold text-sky2">BY INVEST 3.0</span>
-              <span className="mt-4 block text-[0.4em] font-sans font-black not-italic leading-snug tracking-tight text-textDark">
-                від школи інвестицій та фінансової грамотності{" "}
-                <span className="font-semibold text-sky2">BY FINANCE</span>
-              </span>
+            {/* H1 — brand title */}
+            <h1 className="mt-7 font-display text-[clamp(2.4rem,6vw,5.2rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-sky2">
+              BY INVEST 3.0
             </h1>
 
+            {/* Subtitle */}
+            <p className="lead mt-4">
+              від школи інвестицій та фінансової грамотності{" "}
+              <span className="font-semibold text-sky2">BY FINANCE</span>
+            </p>
+
             {/* H2 */}
-            <h2 className="mt-8 font-display text-2xl font-black leading-snug text-textDark md:text-3xl">
+            <p className="lead mt-2">
               Як сформувати{" "}
-              <span className="text-sky2">капітал</span> в довгострок та вийти
+              <span className="font-semibold text-sky2">капітал</span> в довгострок та вийти
               на стабільний пасивний дохід{" "}
-              <span className="text-sky2">від $100/міс</span>
-            </h2>
+              <span className="font-semibold text-sky2">від $100/міс</span>
+            </p>
 
             {/* Description */}
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
+            <p className="lead mt-2 max-w-xl">
               Через надійні інструменти фондового ринку — навіть якщо ти
               починаєш з нуля і нічого не розумієш в інвестиціях.
             </p>
@@ -62,8 +64,11 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link href="/diagnostics" className="btn-primary">
+              <Link href="/diagnostics" className="btn-primary flex-col items-center gap-0.5 text-center">
                 Записатися на безкоштовну консультацію
+                <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
+                  Для початківців в інвестиціях
+                </span>
               </Link>
               <Link
                 href="#program"
@@ -122,11 +127,9 @@ export default function Hero() {
 
                 {/* Badge bottom-left */}
                 <div className="absolute bottom-4 left-4 z-20">
-                  <div className="inline-flex items-center gap-3 rounded-full border border-line bg-white2/95 px-5 py-3 shadow-card backdrop-blur-md">
+                  <div className="eyebrow shadow-card backdrop-blur-md border-line bg-white2/95">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-sky2" />
-                    <span className="font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-navyDeep">
-                      Юлія Баткалова · Засновниця
-                    </span>
+                    Юлія Баткалова · Засновниця
                   </div>
                 </div>
               </div>

@@ -15,7 +15,7 @@ export default function Footer() {
                 BY
               </span>
               <span className="text-navyDeep">
-                BY <span className="title-gradient">INVEST</span>
+                <span className="title-gradient">INVEST</span>
               </span>
             </Link>
             <p className="mt-5 max-w-md text-[14px] leading-relaxed text-muted">
@@ -101,22 +101,13 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-[14px]">
               <li>
                 <a
-                  href="mailto:hello@by-finance.com"
+                  href="mailto:by.finance.school@gmail.com"
                   className="text-text transition-colors hover:text-sky2"
                 >
-                  hello@by-finance.com
+                  by.finance.school@gmail.com
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://www.by-finance.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-text transition-colors hover:text-sky2"
-                >
-                  by-finance.com
-                </a>
-              </li>
+
               <li>
                 <Link
                   href="/diagnostics"

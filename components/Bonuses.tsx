@@ -137,7 +137,7 @@ export default function Bonuses() {
                 <Sparkles size={14} />
                 Ексклюзивні бонуси
               </span>
-              <h2 className="font-display mt-4 text-[32px] font-extrabold leading-[1.1] tracking-[-0.8px] text-white sm:text-[40px] lg:text-[48px]">
+              <h2 className="h2 mt-4 text-white">
                 13+ бонусів, які працюють
                 <br />
                 <span
@@ -150,7 +150,7 @@ export default function Bonuses() {
                   разом з курсом
                 </span>
               </h2>
-              <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/85">
+              <p className="lead mt-4 text-white/85">
                 Закриті матеріали, додаткові ефіри, шаблони та особисті ресурси команди BY finance.
               </p>
             </div>
