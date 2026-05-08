@@ -50,7 +50,7 @@ const config: Config = {
         "section-blue":
           "linear-gradient(180deg, #e7f4fe 0%, #d6ecfc 100%)",
         "hero-radial":
-          "radial-gradient(900px 500px at 85% 10%, rgba(148,212,253,0.35), transparent 65%), radial-gradient(700px 400px at 0% 90%, rgba(170,222,255,0.25), transparent 65%)",
+          "radial-gradient(900px 500px at 85% 10%, rgba(90,191,255,0.45), transparent 60%), radial-gradient(700px 400px at 0% 90%, rgba(148,212,253,0.35), transparent 60%)",
       },
       keyframes: {
         float: {
@@ -61,10 +61,20 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(12px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "pulse-glow": {
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(90,191,255,0.4)" },
+          "50%": { boxShadow: "0 0 0 8px rgba(90,191,255,0)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
       },
       animation: {
         float: "float 6.5s ease-in-out infinite",
         "fade-up": "fade-up 0.6s ease forwards",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        shimmer: "shimmer 3s linear infinite",
       },
     },
   },

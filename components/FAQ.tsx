@@ -50,7 +50,7 @@ export default function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="section section-blue">
+    <section id="faq" className="section bg-white">
       <div className="container-px">
         <div className="mx-auto max-w-[760px] text-center">
           <span className="eyebrow">Часті запитання</span>

@@ -115,16 +115,25 @@ function VariantBadge({ t }: { t: Tariff }) {
 
 export default function Tariffs() {
   return (
-    <section id="pricing" className="section section-white">
-      <div className="container-px">
+    <section id="pricing" className="section section-dark overflow-hidden">
+      {/* Gradient accents */}
+      <div
+        className="pointer-events-none absolute -left-32 top-0 h-[420px] w-[420px] rounded-full opacity-15 blur-3xl"
+        style={{ background: "radial-gradient(circle, #5abfff 0%, transparent 70%)" }}
+      />
+      <div
+        className="pointer-events-none absolute -right-40 bottom-20 h-[500px] w-[500px] rounded-full opacity-10 blur-3xl"
+        style={{ background: "radial-gradient(circle, #94d4fd 0%, transparent 70%)" }}
+      />
+      <div className="container-px relative">
         <div className="mx-auto max-w-[760px] text-center">
-          <span className="eyebrow">Тарифи</span>
-          <h2 className="h2 mt-[18px]">
+          <span className="eyebrow-inv">Тарифи</span>
+          <h2 className="h2 mt-[18px] text-white">
             Оберіть формат навчання,
             <br />
-            який <span className="title-gradient">підходить саме вам</span>
+            який <span className="text-sky2">підходить саме вам</span>
           </h2>
-          <p className="lead mt-4">
+          <p className="lead mt-4 text-white/70">
             Три тарифи — з різним рівнем супроводу. Найбільший результат
             показують студенти на VIP та MAX.
           </p>
@@ -229,12 +238,7 @@ export default function Tariffs() {
                   {/* Sale price + booking text */}
                   {t.salePrice && (
                     <div className="mt-2 grid grid-cols-[auto_1fr] items-center gap-3">
-                      <div
-                        className={[
-                          "font-display text-[38px] font-extrabold leading-none",
-                          isDark ? "text-white" : "text-textDark",
-                        ].join(" ")}
-                      >
+                      <div className="font-display text-[38px] font-extrabold leading-none text-emerald-500">
                         {t.salePrice}
                       </div>
                       <p
@@ -244,7 +248,7 @@ export default function Tariffs() {
                         ].join(" ")}
                       >
                         Забронюй за собою місце за{" "}
-                        <span className={["font-bold", isDark ? "text-sky1" : "text-navyDeep"].join(" ")}>
+                        <span className="font-bold text-emerald-500">
                           {t.salePrice}
                         </span>
                         , залишивши заявку на консультацію
@@ -258,7 +262,7 @@ export default function Tariffs() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={[
-                      "mt-5 block",
+                      "mt-5 block animate-pulse-glow",
                       isDark ? "btn-secondary" : "btn-primary",
                     ].join(" ")}
                   >
@@ -272,20 +276,20 @@ export default function Tariffs() {
         </div>
 
         {/* Money-back guarantee */}
-        <div className="mt-12 overflow-hidden rounded-[24px] bg-section-blue p-7 sm:p-9 lg:p-10">
+        <div className="mt-12 overflow-hidden rounded-[24px] border border-white/10 p-7 sm:p-9 lg:p-10" style={{ background: "rgba(255,255,255,0.06)" }}>
           <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-4">
-              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-navy-gradient text-white shadow-primary">
+              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-sky-gradient text-navyDeep shadow-sky">
                 <ShieldCheck size={24} />
               </div>
               <div>
-                <div className="font-display text-[20px] font-extrabold leading-tight text-textDark sm:text-[22px]">
+                <div className="font-display text-[20px] font-extrabold leading-tight text-white sm:text-[22px]">
                   Гарантія повернення 100% коштів
                 </div>
-                <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-text sm:text-[16px]">
+                <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-white/70 sm:text-[16px]">
                   Для тарифів{" "}
-                  <span className="font-bold text-navyDeep">VIP</span> і{" "}
-                  <span className="font-bold text-navyDeep">MAX</span>: діє
+                  <span className="font-bold text-sky2">VIP</span> і{" "}
+                  <span className="font-bold text-sky2">MAX</span>: діє
                   100% гарантія повернення коштів до закінчення першого модуля
                   — без зайвих питань.
                 </p>

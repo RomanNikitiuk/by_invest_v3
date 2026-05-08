@@ -39,7 +39,11 @@ const AWARDS = [
 
 export default function Results() {
   return (
-    <section id="results" className="section section-blue">
+    <section
+      id="results"
+      className="section overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #d6ecfc 0%, #ffffff 100%)" }}
+    >
       <div className="container-px">
         <div className="mx-auto max-w-[760px] text-center">
           <span className="eyebrow">Результати школи</span>

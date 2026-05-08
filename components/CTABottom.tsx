@@ -52,69 +52,67 @@ function Countdown() {
 
 export default function CTABottom() {
   return (
-    <section id="cta" className="section section-white">
-      <div className="container-px">
-        <div
-          className="relative overflow-hidden rounded-[32px] px-8 py-20 text-center md:px-16"
-          style={{
-            background:
-              "linear-gradient(160deg, #0f2744 0%, #1a3a6b 45%, #1e4f8c 100%)",
-          }}
+    <section id="cta" className="section section-dark overflow-hidden text-center">
+      {/* Glow top */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-50"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% -10%, #5abfff 0%, transparent 55%)",
+        }}
+      />
+      {/* Glow bottom-right */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-20"
+        style={{
+          background:
+            "radial-gradient(ellipse at 85% 110%, #94d4fd 0%, transparent 50%)",
+        }}
+      />
+
+      <div className="container-px relative flex flex-col items-center gap-8">
+        {/* Badge */}
+        <span className="eyebrow-inv">
+          <span className="h-1.5 w-1.5 rounded-full bg-sky1" />
+          Важливо
+        </span>
+
+        {/* Heading */}
+        <h2 className="h2 max-w-3xl text-white">
+          Не чекайте, поки{" "}
+          <span className="text-sky2">інфляція</span>
+          <br />
+          знецінить ваші зусилля
+        </h2>
+
+        {/* Description */}
+        <p className="lead max-w-xl text-white/70">
+          Запишіться на безкоштовну консультацію та дізнайтесь усі деталі
+          навчання, поточну ціну та доступні бонуси цього потоку
+        </p>
+
+        {/* Countdown */}
+        <Countdown />
+
+        {/* CTA button */}
+        <Link
+          href="/diagnostics"
+          className="inline-flex flex-col items-center gap-0.5 rounded-full bg-white px-9 py-4 font-display text-[15px] font-extrabold text-navyDeep shadow-card transition-all hover:-translate-y-0.5 hover:shadow-cardHover"
         >
-          {/* Subtle glow */}
-          <div
-            className="pointer-events-none absolute inset-0 opacity-30"
-            style={{
-              background:
-                "radial-gradient(ellipse at 50% 0%, #5ab4f5 0%, transparent 60%)",
-            }}
-          />
+          <span className="flex items-center gap-2">
+            Записатися на безкоштовну консультацію
+            <ArrowRight size={18} />
+          </span>
+          <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-50">
+            Для початківців в інвестиціях
+          </span>
+        </Link>
 
-          <div className="relative flex flex-col items-center gap-8">
-            {/* Badge */}
-            <span className="eyebrow-inv">
-              <span className="h-1.5 w-1.5 rounded-full bg-sky1" />
-              Важливо
-            </span>
-
-            {/* Heading */}
-            <h2 className="h2 max-w-3xl text-white">
-              Не чекайте, поки{" "}
-              <span className="text-sky2">інфляція</span>
-              <br />
-              знецінить ваші зусилля
-            </h2>
-
-            {/* Description */}
-            <p className="lead max-w-xl text-white/70">
-              Запишіться на безкоштовну консультацію та дізнайтесь усі деталі
-              навчання, поточну ціну та доступні бонуси цього потоку
-            </p>
-
-            {/* Countdown */}
-            <Countdown />
-
-            {/* CTA button */}
-            <Link
-              href="/diagnostics"
-              className="inline-flex flex-col items-center gap-0.5 rounded-full bg-white px-9 py-4 font-display text-[15px] font-extrabold text-navyDeep shadow-card transition-all hover:-translate-y-0.5 hover:shadow-cardHover"
-            >
-              <span className="flex items-center gap-2">
-                Записатися на безкоштовну консультацію
-                <ArrowRight size={18} />
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-50">
-                Для початківців в інвестиціях
-              </span>
-            </Link>
-
-            {/* Trust line */}
-            <p className="text-[12px] font-semibold uppercase tracking-[2px] text-white/50">
-              <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-sky1 align-middle" />
-              Live · Гарантія повернення коштів
-            </p>
-          </div>
-        </div>
+        {/* Trust line */}
+        <p className="text-[12px] font-semibold uppercase tracking-[2px] text-white/50">
+          <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-sky1 align-middle" />
+          Live · Гарантія повернення коштів
+        </p>
       </div>
     </section>
   );

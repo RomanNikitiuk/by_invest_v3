@@ -96,7 +96,7 @@ export default function Program() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section id="program" className="section section-blue">
+    <section id="program" className="section section-white">
       <div className="container-px">
         <div className="mx-auto max-w-[760px] text-center">
           <span className="eyebrow">Програма курсу</span>

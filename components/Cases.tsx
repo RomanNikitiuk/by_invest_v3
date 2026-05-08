@@ -91,7 +91,11 @@ export default function Cases() {
   };
 
   return (
-    <section id="cases" className="section section-blue">
+    <section
+      id="cases"
+      className="section overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #d6ecfc 0%, #ffffff 100%)" }}
+    >
       <div className="container-px">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">

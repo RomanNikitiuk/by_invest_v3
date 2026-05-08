@@ -12,9 +12,18 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-bg pt-32 pb-20 md:pt-40 md:pb-28"
+      className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
+      style={{
+        background:
+          "linear-gradient(220deg, #aadeff 0%, #d6ecfc 45%, #e7f4fe 100%)",
+      }}
     >
       <div className="pointer-events-none absolute inset-0 bg-hero-radial" />
+      {/* Bottom fade into next section */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
+        style={{ background: "linear-gradient(to bottom, transparent, #d6ecfc)" }}
+      />
 
       <div className="container-px relative">
         <div className="grid items-center gap-10 lg:grid-cols-12">

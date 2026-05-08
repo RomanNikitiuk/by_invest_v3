@@ -154,7 +154,11 @@ function Carousel<T>({
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="section section-white">
+    <section
+      id="reviews"
+      className="section overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #d6ecfc 0%, #ffffff 100%)" }}
+    >
       <div className="container-px">
         <div className="mx-auto max-w-[760px] text-center">
           <span className="eyebrow">Відгуки і телебачення</span>

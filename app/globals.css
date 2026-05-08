@@ -9,7 +9,7 @@
 
 html,
 body {
-  background: #ffffff;
+  background: #d6ecfc;
   color: #404040;
   font-family: Raleway, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
@@ -28,15 +28,22 @@ body {
     @apply relative py-20 sm:py-24 lg:py-[100px];
   }
 
-  /* Section background variants (alternating like by-finance.com) */
+  /* Section background variants — Variant B brand palette */
   .section-white {
-    @apply bg-white2;
+    @apply bg-blue200; /* #d6ecfc */
   }
   .section-blue {
-    @apply bg-section-blue;
+    @apply bg-blueSoft; /* #aadeff */
   }
   .section-blue-soft {
     @apply bg-blue50;
+  }
+  /* Contrast dark section — deep navy #071829 with subtle gradient accents */
+  .section-dark {
+    background:
+      radial-gradient(ellipse 700px 500px at 90% 10%, rgba(90, 191, 255, 0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 600px 450px at 5% 90%, rgba(37, 99, 168, 0.11) 0%, transparent 65%),
+      #071829;
   }
 
   /* Eyebrow pill */
@@ -75,11 +82,14 @@ body {
   }
 
   .btn-primary {
-    @apply btn bg-navy-gradient text-white shadow-primary hover:-translate-y-0.5 hover:shadow-primaryHover;
+    @apply btn text-white shadow-primary hover:-translate-y-1 hover:shadow-primaryHover;
+    background: linear-gradient(135deg, #1e3f60 0%, #2563a8 50%, #5abfff 100%);
     background-size: 200% 200%;
+    background-position: 0% 0%;
+    transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-primary:hover {
-    background-position: 100% 0;
+    background-position: 100% 100%;
   }
 
   .btn-secondary {
@@ -117,10 +127,26 @@ body {
     border-color: rgba(90, 191, 255, 0.35);
   }
   .tariff-vip {
-    @apply border-sky2/60;
+    @apply border-sky2/80;
     box-shadow:
-      0 0 0 1px rgba(90, 191, 255, 0.45),
-      0 26px 60px -20px rgba(90, 191, 255, 0.5);
+      0 0 0 2px rgba(90, 191, 255, 0.6),
+      0 30px 80px -20px rgba(90, 191, 255, 0.6),
+      0 0 40px -10px rgba(90, 191, 255, 0.25);
+    transform: scale(1.02);
+  }
+  .tariff-vip:hover {
+    transform: scale(1.02) translateY(-4px);
+    box-shadow:
+      0 0 0 2px rgba(90, 191, 255, 0.8),
+      0 36px 90px -20px rgba(90, 191, 255, 0.7),
+      0 0 60px -10px rgba(90, 191, 255, 0.35);
+  }
+  .tariff-max:hover {
+    @apply -translate-y-1;
+    box-shadow:
+      0 0 0 1px rgba(90, 191, 255, 0.4),
+      0 36px 90px -20px rgba(30, 63, 96, 0.7),
+      0 0 40px -10px rgba(90, 191, 255, 0.2);
   }
   .tariff-max {
     @apply text-white;

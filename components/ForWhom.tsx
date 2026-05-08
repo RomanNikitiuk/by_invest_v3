@@ -43,7 +43,11 @@ const PAIN_POINTS = [
 
 export default function ForWhom() {
   return (
-    <section id="for-whom" className="section section-white">
+    <section
+      id="for-whom"
+      className="section"
+      style={{ background: "linear-gradient(180deg, #d6ecfc 0%, #ffffff 100%)" }}
+    >
       <div className="container-px">
         <div className="mx-auto max-w-[760px] text-center">
           <span className="eyebrow">Для кого цей курс</span>

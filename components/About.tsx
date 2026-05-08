@@ -81,8 +81,13 @@ const STATS = [
 
 export default function About() {
   return (
-    <section id="expert" className="section section-white">
-      <div className="container-px">
+    <section id="expert" className="section overflow-hidden bg-white">
+      {/* Bottom fade into next section */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
+        style={{ background: "linear-gradient(to bottom, transparent, #d6ecfc)" }}
+      />
+      <div className="container-px relative">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Photo + stats below */}
           <div className="lg:col-span-5">
