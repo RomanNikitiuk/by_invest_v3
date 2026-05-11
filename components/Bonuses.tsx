@@ -151,7 +151,7 @@ export default function Bonuses() {
                 </span>
               </h2>
               <p className="lead mt-4 text-white/85">
-                Закриті матеріали, додаткові ефіри, шаблони та особисті ресурси команди BY finance.
+                Закриті матеріали, додаткові ефіри, шаблони та особисті ресурси команди BY finance.
               </p>
             </div>
             <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white2 text-navyDeep shadow-card">

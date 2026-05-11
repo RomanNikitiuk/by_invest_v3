@@ -2,33 +2,14 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useSharedCountdown } from "@/hooks/useSharedCountdown";
 
 function Countdown() {
-  const getSecondsLeft = () => {
-    const now = new Date();
-    // Count down to end of next Sunday (end of week)
-    const end = new Date(now);
-    const daysUntilSunday = (7 - end.getDay()) % 7 || 7;
-    end.setDate(end.getDate() + daysUntilSunday);
-    end.setHours(23, 59, 59, 999);
-    return Math.floor((end.getTime() - now.getTime()) / 1000);
-  };
+  const secs = useSharedCountdown();
 
-  const [secs, setSecs] = useState(0);
-
-  useEffect(() => {
-    setSecs(getSecondsLeft());
-    const id = setInterval(() => setSecs(getSecondsLeft()), 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  const d = String(Math.floor(secs / 86400)).padStart(2, "0");
-  const h = String(Math.floor((secs % 86400) / 3600)).padStart(2, "0");
+  const h = String(Math.floor(secs / 3600)).padStart(2, "0");
   const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
   const s = String(secs % 60).padStart(2, "0");
-
-  const parts = [d, h, m, s];
 
   return (
     <div className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-6 py-3 backdrop-blur-sm">
@@ -37,14 +18,11 @@ function Countdown() {
         До закриття бонусу
       </span>
       <div className="flex items-center gap-1 font-display text-[20px] font-extrabold tabular-nums text-white">
-        {parts.map((p, i) => (
-          <span key={i} className="flex items-center gap-1">
-            {p}
-            {i < parts.length - 1 && (
-              <span className="mx-0.5 text-white/40">:</span>
-            )}
-          </span>
-        ))}
+        {h}
+        <span className="mx-0.5 text-white/40">:</span>
+        {m}
+        <span className="mx-0.5 text-white/40">:</span>
+        {s}
       </div>
     </div>
   );
@@ -97,7 +75,7 @@ export default function CTABottom() {
         {/* CTA button */}
         <Link
           href="/diagnostics"
-          className="inline-flex flex-col items-center gap-0.5 rounded-full bg-white px-9 py-4 font-display text-[15px] font-extrabold text-navyDeep shadow-card transition-all hover:-translate-y-0.5 hover:shadow-cardHover"
+          className="inline-flex flex-col items-center gap-0.5 rounded-full bg-sky-gradient px-9 py-4 font-display text-[15px] font-extrabold text-navyDeep animate-pulse-glow shadow-sky transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(90,191,255,0.45)]"
         >
           <span className="flex items-center gap-2">
             Записатися на безкоштовну консультацію

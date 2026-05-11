@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Check, Crown, ShieldCheck, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Check, Crown, ShieldCheck, Sparkles, Star } from "lucide-react";
 
 type Tariff = {
   id: "start" | "vip" | "max";
@@ -225,48 +225,52 @@ export default function Tariffs() {
 
                 {/* Price block — always has fixed gap from content above */}
                 <div className="mt-8 border-t border-line/50 pt-6">
-                  {/* Strikethrough original price */}
-                  <div
-                    className={[
-                      "text-[16px] font-semibold line-through",
-                      isDark ? "text-white/40" : "text-muted",
-                    ].join(" ")}
-                  >
-                    {t.price}
-                  </div>
-
-                  {/* Sale price + booking text */}
-                  {t.salePrice && (
-                    <div className="mt-2 grid grid-cols-[auto_1fr] items-center gap-3">
-                      <div className="font-display text-[38px] font-extrabold leading-none text-emerald-500">
+                  {/* Prices row */}
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={[
+                        "text-[16px] font-semibold line-through",
+                        isDark ? "text-white/40" : "text-muted",
+                      ].join(" ")}
+                    >
+                      {t.price}
+                    </div>
+                    {t.salePrice && (
+                      <div
+                        className="font-display text-[38px] font-extrabold leading-none text-emerald-500"
+                        style={{ textShadow: "0 0 20px rgba(52,211,153,0.5), 0 0 40px rgba(52,211,153,0.25)" }}
+                      >
                         {t.salePrice}
                       </div>
-                      <p
-                        className={[
-                          "text-[12px] leading-relaxed",
-                          isDark ? "text-white/70" : "text-muted",
-                        ].join(" ")}
-                      >
-                        Забронюй за собою місце за{" "}
-                        <span className="font-bold text-emerald-500">
-                          {t.salePrice}
-                        </span>
-                        , залишивши заявку на консультацію
-                      </p>
-                    </div>
-                  )}
+                    )}
+                  </div>
 
-                  {/* Book CTA */}
+                  {/* Reserve CTA */}
+                  <a
+                    href="https://secure.wayforpay.com/payment/saad650321f13"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={[
+                      "mt-5 block text-center font-extrabold",
+                      isDark
+                        ? "rounded-full border border-white/20 bg-white/10 py-3 text-white transition-all hover:bg-white/20"
+                        : "rounded-full border border-navyDeep/20 bg-navyDeep/8 py-3 text-navyDeep transition-all hover:bg-navyDeep/15",
+                    ].join(" ")}
+                  >
+                    Забронювати місце
+                  </a>
+
+                  {/* Buy CTA */}
                   <Link
                     href={t.bookHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={[
-                      "mt-5 block animate-pulse-glow",
+                      "mt-3 block text-center font-extrabold animate-pulse-glow",
                       isDark ? "btn-secondary" : "btn-primary",
                     ].join(" ")}
                   >
-                    Забронювати місце
+                    Купити
                   </Link>
                 </div>
 
@@ -295,8 +299,8 @@ export default function Tariffs() {
                 </p>
               </div>
             </div>
-            <Link href="/diagnostics" className="btn-primary shrink-0 flex-col items-center gap-0.5 text-center">
-              Записатися на консультацію
+            <Link href="/diagnostics" className="btn-primary shrink-0 flex-col items-center gap-0.5 text-center animate-pulse-glow">
+              <span className="flex items-center gap-2">Записатися на консультацію <ArrowRight size={18} className="shrink-0" /></span>
               <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
                 Для початківців в інвестиціях
               </span>

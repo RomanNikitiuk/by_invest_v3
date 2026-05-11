@@ -50,7 +50,7 @@ const config: Config = {
         "section-blue":
           "linear-gradient(180deg, #e7f4fe 0%, #d6ecfc 100%)",
         "hero-radial":
-          "radial-gradient(900px 500px at 85% 10%, rgba(90,191,255,0.45), transparent 60%), radial-gradient(700px 400px at 0% 90%, rgba(148,212,253,0.35), transparent 60%)",
+          "radial-gradient(900px 500px at 85% 10%, rgba(90,191,255,0.45), transparent 60%)",
       },
       keyframes: {
         float: {
@@ -62,8 +62,8 @@ const config: Config = {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 0 0 rgba(90,191,255,0.4)" },
-          "50%": { boxShadow: "0 0 0 8px rgba(90,191,255,0)" },
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(90,191,255,0.6)" },
+          "50%": { boxShadow: "0 0 0 18px rgba(90,191,255,0)" },
         },
         shimmer: {
           "0%": { backgroundPosition: "-200% center" },

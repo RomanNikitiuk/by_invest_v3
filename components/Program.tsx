@@ -96,7 +96,7 @@ export default function Program() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section id="program" className="section section-white">
+    <section id="program" className="section">
       <div className="container-px">
         <div className="mx-auto max-w-[760px] text-center">
           <span className="eyebrow">Програма курсу</span>
@@ -117,15 +117,17 @@ export default function Program() {
               <div
                 key={m.number}
                 className={[
-                  "rounded-[20px] border bg-white2 transition-all duration-300",
-                  m.highlight ? "border-sky2/60" : "border-line",
-                  open ? "shadow-cardHover" : "shadow-sm",
+                  "rounded-[20px] border transition-all duration-300",
+                  m.highlight ? "border-transparent" : "border-line bg-white2",
+                  open && !m.highlight ? "shadow-cardHover" : "",
+                  open && m.highlight ? "shadow-[0_24px_60px_-20px_rgba(7,24,41,0.5)]" : "",
+                  !open && !m.highlight ? "shadow-sm" : "",
                 ].join(" ")}
                 style={
                   m.highlight
                     ? {
-                        boxShadow:
-                          "0 0 0 1px rgba(90,191,255,0.45), 0 24px 50px -20px rgba(90,191,255,0.45)",
+                        background: "linear-gradient(160deg, #1e3f60 0%, #071829 100%)",
+                        boxShadow: "0 0 0 1px rgba(90,191,255,0.2), 0 30px 70px -20px rgba(7,24,41,0.5)",
                       }
                     : undefined
                 }
@@ -147,11 +149,11 @@ export default function Program() {
                     </span>
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-display text-[16px] font-bold text-textDark sm:text-[18px]">
+                        <span className={`font-display text-[16px] font-bold sm:text-[18px] ${m.highlight ? "text-white" : "text-textDark"}`}>
                           {m.title}
                         </span>
                         {m.highlight && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-sky2/15 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[1.5px] text-navyDeep">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-sky2/20 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[1.5px] text-sky1">
                             <Sparkles size={12} />
                             Ексклюзивний модуль
                           </span>
@@ -160,7 +162,7 @@ export default function Program() {
                     </div>
                   </div>
 
-                  <div className="flex shrink-0 items-center gap-3 text-[13px] font-semibold text-steel sm:text-[14px]">
+                  <div className={`flex shrink-0 items-center gap-3 text-[13px] font-semibold sm:text-[14px] ${m.highlight ? "text-white/60" : "text-steel"}`}>
                     <span className="hidden sm:inline">Наповнення</span>
                     <span
                       className={[
@@ -184,12 +186,12 @@ export default function Program() {
                   ].join(" ")}
                 >
                   <div className="overflow-hidden">
-                    <div className="border-t border-line/80 pt-6">
+                    <div className={`border-t pt-6 ${m.highlight ? "border-white/15" : "border-line/80"}`}>
                       <ul className="space-y-3">
                         {m.bullets.map((b, i) => (
                           <li
                             key={i}
-                            className="flex items-start gap-3 text-[14px] leading-relaxed text-text sm:text-[15px]"
+                            className={`flex items-start gap-3 text-[14px] leading-relaxed sm:text-[15px] ${m.highlight ? "text-white/80" : "text-text"}`}
                           >
                             <span
                               className={[
@@ -250,16 +252,6 @@ export default function Program() {
               </div>
             );
           })}
-        </div>
-
-        {/* Budget highlight */}
-        <div className="mx-auto mt-8 max-w-[920px]">
-          <div className="flex items-center gap-4 rounded-[18px] border border-sky2/40 bg-sky2/10 px-6 py-4">
-            <span className="text-[22px]">💰</span>
-            <p className="font-display text-[16px] font-bold text-navyDeep">
-              Є бюджет, є вільні гроші для інвестицій
-            </p>
-          </div>
         </div>
 
       </div>

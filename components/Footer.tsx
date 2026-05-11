@@ -20,7 +20,7 @@ export default function Footer() {
             </Link>
             <p className="mt-5 max-w-md text-[14px] leading-relaxed text-muted">
               Авторський курс із інвестування від школи фінансової грамотності
-              BY finance. Системне навчання, кураторський супровід та реальні
+              BY finance. Системне навчання, кураторський супровід та реальні
               результати студентів.
             </p>
             <div className="mt-6 flex items-center gap-3">
@@ -124,7 +124,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-start justify-between gap-3 text-[12px] text-muted sm:flex-row sm:items-center">
           <div>
-            © {new Date().getFullYear()} BY finance · BY INVEST. Всі права
+            © {new Date().getFullYear()} BY finance · BY INVEST. Всі права
             захищені.
           </div>
           <div className="flex gap-6">

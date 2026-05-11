@@ -59,7 +59,7 @@ const ACHIEVEMENTS = [
       "17 років у фінансах, 7+ років практичного інвестування на фондовому ринку.",
   },
   {
-    title: "Засновниця школи BY Finance",
+    title: "Засновниця школи BY Finance",
     description: "Супроводила угоди партнерів на 61.800.000$.",
   },
   {
@@ -68,8 +68,8 @@ const ACHIEVEMENTS = [
       "Унікальна система навчання інвестуванню для людей без фінансової освіти.",
   },
   {
-    title: "Інфлюенсер року 2025",
-    description: "Визнана FinAwards як інфлюенсер року інвестиційного ринку.",
+    title: "Інфлюєнсер року інвестиційного ринку '25",
+    description: "Визнана FinAwards як інфлюєнсер року інвестиційного ринку.",
   },
 ];
 
@@ -81,12 +81,7 @@ const STATS = [
 
 export default function About() {
   return (
-    <section id="expert" className="section overflow-hidden bg-white">
-      {/* Bottom fade into next section */}
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
-        style={{ background: "linear-gradient(to bottom, transparent, #d6ecfc)" }}
-      />
+    <section id="expert" className="section overflow-hidden">
       <div className="container-px relative">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Photo + stats below */}
@@ -106,7 +101,7 @@ export default function About() {
               />
               <div className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full bg-white2 px-3 py-1.5 text-[12px] font-semibold text-navyDeep shadow-sm">
                 <BadgeCheck size={14} className="text-sky2" />
-                Сертифікований радник
+                Фінансова радниця
               </div>
             </div>
 
@@ -134,10 +129,12 @@ export default function About() {
             <h2 className="h2 mt-[18px]">
               <span className="title-gradient">Юлія Баткалова</span>
               <br />
-              засновниця школи BY Finance
+              засновниця школи{" "}
+              <br />
+              BY&nbsp;Finance
             </h2>
             <p className="lead mt-5">
-              Інвесторка, авторка методики DAAR та публічна фінансова експертка.
+              Інвесторка, авторка методики DAAR та фінансова експертка.
               Понад 50&nbsp;000 студентів пройшли її освітні програми та виходять на
               стабільний пасивний дохід.
             </p>
@@ -154,7 +151,9 @@ export default function About() {
                   </div>
                   <div>
                     <div className="font-display text-[15px] font-extrabold text-textDark">
-                      {a.title}
+                      {a.title.includes("BY Finance")
+                        ? <>Засновниця школи<br />BY&nbsp;Finance</>
+                        : a.title}
                     </div>
                     <p className="mt-0.5 text-[13px] leading-relaxed text-muted">
                       {a.description}
@@ -165,7 +164,7 @@ export default function About() {
             </div>
 
             <div className="mt-8">
-              <Link href="/diagnostics" className="btn-primary flex-col items-center gap-0.5 text-center">
+              <Link href="/diagnostics" className="btn-primary flex-col items-center gap-0.5 text-center animate-pulse-glow">
                 <span className="flex items-center gap-2">Безкоштовна консультація з командою <ArrowRight size={18} /></span>
                 <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
                   Для початківців в інвестиціях

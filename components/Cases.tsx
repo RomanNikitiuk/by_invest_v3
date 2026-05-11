@@ -94,7 +94,6 @@ export default function Cases() {
     <section
       id="cases"
       className="section overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #d6ecfc 0%, #ffffff 100%)" }}
     >
       <div className="container-px">
         <div className="flex flex-wrap items-end justify-between gap-6">
@@ -106,7 +105,7 @@ export default function Cases() {
               <span className="title-gradient">не теорія, а практика</span>
             </h2>
             <p className="lead mt-4">
-              Витягли найяскравіші історії: з якою точкою старту прийшли
+              Обрали найцікавіші історії випускників: з якою точкою старту прийшли
               студенти, яку стратегію зібрали і до яких показників прийшли.
             </p>
           </div>
@@ -132,14 +131,25 @@ export default function Cases() {
           ref={trackRef}
           className="scrollbar-hide -mx-5 mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-2"
         >
-          {CASES.map((c, i) => (
+          {CASES.map((c, i) => {
+            const dark = i % 2 === 1;
+            return (
             <article
               key={i}
-              className="card relative flex w-[88%] shrink-0 flex-col snap-start sm:w-[60%] lg:w-[40%]"
+              className="relative flex w-[88%] shrink-0 flex-col snap-start rounded-[22px] border p-6 sm:w-[60%] sm:p-8 lg:w-[40%]"
+              style={dark ? {
+                background: "linear-gradient(160deg, #1e3f60 0%, #071829 100%)",
+                border: "1px solid rgba(255,255,255,0.10)",
+                boxShadow: "0 30px 80px rgba(7,24,41,0.35)",
+              } : {
+                background: "#ffffff",
+                border: "1px solid rgba(30,63,96,0.10)",
+                boxShadow: "0 30px 80px rgba(30,63,96,0.08), 0 4px 16px rgba(30,63,96,0.04)",
+              }}
             >
               <Quote
                 size={28}
-                className="absolute right-6 top-6 text-sky2/50"
+                className={`absolute right-6 top-6 ${dark ? "text-sky2/40" : "text-sky2/50"}`}
               />
 
               {/* Header */}
@@ -148,10 +158,10 @@ export default function Cases() {
                   {String(i + 1).padStart(2, "0")}
                 </div>
                 <div>
-                  <div className="font-display text-[18px] font-extrabold leading-tight text-textDark">
+                  <div className={`font-display text-[18px] font-extrabold leading-tight ${dark ? "text-white" : "text-textDark"}`}>
                     {c.name}
                   </div>
-                  <div className="mt-0.5 flex items-center gap-1.5 text-[12px] text-muted">
+                  <div className={`mt-0.5 flex items-center gap-1.5 text-[12px] ${dark ? "text-white/55" : "text-muted"}`}>
                     <MapPin size={12} />
                     {c.city}
                     {c.age && (
@@ -165,37 +175,53 @@ export default function Cases() {
               </div>
 
               {/* Точка А */}
-              <div className="mt-5 rounded-2xl border border-line bg-blue50/60 p-4">
-                <div className="font-display text-[11px] font-extrabold uppercase tracking-[2px] text-muted">
+              <div
+                className="mt-5 rounded-2xl p-4"
+                style={dark ? {
+                  background: "rgba(255,255,255,0.07)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                } : {
+                  background: "rgba(239,246,252,0.6)",
+                  border: "1px solid rgba(30,63,96,0.10)",
+                }}
+              >
+                <div className={`font-display text-[11px] font-extrabold uppercase tracking-[2px] ${dark ? "text-white/55" : "text-muted"}`}>
                   Точка А
                 </div>
-                <p className="mt-1.5 text-[14px] leading-relaxed text-text">
+                <p className={`mt-1.5 text-[14px] leading-relaxed ${dark ? "text-white/85" : "text-text"}`}>
                   {c.pointA}
                 </p>
               </div>
 
               {/* Ціль */}
               <div className="mt-3 flex items-start gap-2.5">
-                <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-sky2/15 text-navyDeep">
+                <span className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full ${dark ? "bg-sky2/20 text-sky1" : "bg-sky2/15 text-navyDeep"}`}>
                   <Target size={13} />
                 </span>
                 <div>
-                  <span className="font-display text-[12px] font-bold uppercase tracking-[1.5px] text-navyDeep">
+                  <span className={`font-display text-[12px] font-bold uppercase tracking-[1.5px] ${dark ? "text-sky1" : "text-navyDeep"}`}>
                     Ціль:
                   </span>{" "}
-                  <span className="text-[14px] text-text">{c.goal}</span>
+                  <span className={`text-[14px] ${dark ? "text-white/80" : "text-text"}`}>{c.goal}</span>
                 </div>
               </div>
 
               {/* Точка Б — що дав курс */}
-              <p className="mt-4 text-[14px] leading-relaxed text-text">
-                <span className="font-bold text-navyDeep">Точка Б.</span>{" "}
+              <p className={`mt-4 text-[14px] leading-relaxed ${dark ? "text-white/80" : "text-text"}`}>
+                <span className={`font-bold ${dark ? "text-sky1" : "text-navyDeep"}`}>Точка Б.</span>{" "}
                 {c.pointB}
               </p>
 
               {/* Результат */}
-              <div className="mt-5 rounded-2xl bg-hero-gradient p-4 text-white">
-                <div className="flex items-center gap-2 font-display text-[11px] font-extrabold uppercase tracking-[2px] text-white/85">
+              <div
+                className="mt-5 rounded-2xl p-4 text-white"
+                style={dark ? {
+                  background: "linear-gradient(116deg, #94d4fd 0%, #aadeff 100%)",
+                } : {
+                  background: "linear-gradient(116deg, #1e3f60 0%, #5383b3 55%, #5abfff 100%)",
+                }}
+              >
+                <div className={`flex items-center gap-2 font-display text-[11px] font-extrabold uppercase tracking-[2px] ${dark ? "text-navyDeep/80" : "text-white/85"}`}>
                   <TrendingUp size={14} />
                   Результат зараз
                 </div>
@@ -203,7 +229,7 @@ export default function Cases() {
                   {c.results.map((r) => (
                     <li
                       key={r}
-                      className="font-display text-[15px] font-extrabold leading-snug text-white"
+                      className={`font-display text-[15px] font-extrabold leading-snug ${dark ? "text-navyDeep" : "text-white"}`}
                     >
                       {r}
                     </li>
@@ -212,11 +238,12 @@ export default function Cases() {
               </div>
 
               {/* Quote */}
-              <div className="mt-5 border-t border-line pt-4 text-[13px] italic leading-relaxed text-muted">
+              <div className={`mt-5 border-t pt-4 text-[13px] italic leading-relaxed ${dark ? "border-white/15 text-white/55" : "border-line text-muted"}`}>
                 «{c.quote}»
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

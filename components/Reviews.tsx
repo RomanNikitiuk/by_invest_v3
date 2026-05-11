@@ -52,7 +52,7 @@ const TG_REVIEWS: TgReview[] = [
   },
   {
     name: "Оксана",
-    text: "Всім привіт. Отримала свою стратегію з коментарями і сертифікат про успішне навчання. Велике дякую куратору Ірині за підтримку у навчанні та швидкі і зрозумілі відповіді. Велике дякую Юлії і всій команді BY finance. Ви — класна команда, класна подача матеріалу. Тепер інвестиції — це частина мого життя. Бажаю всім успіхів і здійснення своїх мрій 👍❤️",
+    text: "Всім привіт. Отримала свою стратегію з коментарями і сертифікат про успішне навчання. Велике дякую куратору Ірині за підтримку у навчанні та швидкі і зрозумілі відповіді. Велике дякую Юлії і всій команді BY finance. Ви — класна команда, класна подача матеріалу. Тепер інвестиції — це частина мого життя. Бажаю всім успіхів і здійснення своїх мрій 👍❤️",
   },
   {
     name: "Natalia Natalia",
@@ -167,8 +167,7 @@ export default function Reviews() {
             <span className="title-gradient">учні та медіа</span>
           </h2>
           <p className="lead mt-4">
-            Зліва — відгуки наших студентів з Telegram-каналу. Праворуч — ефіри
-            Юлії на українському телебаченні.
+            Відгуки наших студентів з Telegram-каналу та ефіри Юлії на українському телебаченні.
           </p>
         </div>
 
@@ -176,18 +175,15 @@ export default function Reviews() {
           {/* TELEGRAM REVIEWS */}
           <div>
             <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className="eyebrow">
-                <Send size={14} />
-                Відгуки з Telegram
-              </span>
               <a
                 href="https://t.me/+0-vDu-9dAc9lY2Ey"
                 target="_blank"
                 rel="noreferrer"
-                className="ml-auto inline-flex items-center gap-1.5 text-[13px] font-semibold text-navyDeep transition-colors hover:text-sky2"
+                className="eyebrow transition-opacity hover:opacity-75"
               >
-                Відкрити канал
-                <ExternalLink size={13} />
+                <Send size={14} />
+                Відгуки з Telegram
+                <ExternalLink size={12} className="opacity-60" />
               </a>
             </div>
 
@@ -229,18 +225,15 @@ export default function Reviews() {
           {/* TV / YOUTUBE */}
           <div>
             <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className="eyebrow">
-                <PlayCircle size={14} />
-                Виступи на телебаченні
-              </span>
               <a
                 href="https://www.youtube.com/@byfinance"
                 target="_blank"
                 rel="noreferrer"
-                className="ml-auto inline-flex items-center gap-1.5 text-[13px] font-semibold text-navyDeep transition-colors hover:text-sky2"
+                className="eyebrow transition-opacity hover:opacity-75"
               >
-                Відкрити канал
-                <ExternalLink size={13} />
+                <PlayCircle size={14} />
+                Виступи на телебаченні
+                <ExternalLink size={12} className="opacity-60" />
               </a>
             </div>
 

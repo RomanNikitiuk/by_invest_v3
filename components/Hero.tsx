@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 
 const STATS = [
   { k: "3 700+", v: "Студентів" },
@@ -15,15 +15,10 @@ export default function Hero() {
       className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
       style={{
         background:
-          "linear-gradient(220deg, #aadeff 0%, #d6ecfc 45%, #e7f4fe 100%)",
+          "linear-gradient(180deg, #ffffff 0%, #d6ecfc 100%)",
       }}
     >
-      <div className="pointer-events-none absolute inset-0 bg-hero-radial" />
-      {/* Bottom fade into next section */}
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
-        style={{ background: "linear-gradient(to bottom, transparent, #d6ecfc)" }}
-      />
+
 
       <div className="container-px relative">
         <div className="grid items-center gap-10 lg:grid-cols-12">
@@ -34,26 +29,28 @@ export default function Hero() {
             {/* Chip */}
             <span className="eyebrow">
               <span className="h-2 w-2 rounded-full bg-sky2 ring-4 ring-sky2/25" />
-              BY FINANCE · ШКОЛА ІНВЕСТИЦІЙ
+              BY&nbsp;FINANCE · Школа фінансової грамотності та інвестування, зареєстрована в 2021р
             </span>
 
             {/* H1 — brand title */}
             <h1 className="mt-7 font-display text-[clamp(2.4rem,6vw,5.2rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-sky2">
-              BY INVEST 3.0
+              BY INVEST 3.0
             </h1>
 
             {/* Subtitle */}
-            <p className="lead mt-4">
+            <p className="lead mt-1">
               від школи інвестицій та фінансової грамотності{" "}
-              <span className="font-semibold text-sky2">BY FINANCE</span>
+              <span className="font-semibold text-sky2 whitespace-nowrap">BY FINANCE</span>
             </p>
 
             {/* H2 */}
-            <p className="lead mt-2">
-              Як сформувати{" "}
-              <span className="font-semibold text-sky2">капітал</span> в довгострок та вийти
-              на стабільний пасивний дохід{" "}
-              <span className="font-semibold text-sky2">від $100/міс</span>
+            <p className="mt-10 font-display text-[26px] font-extrabold leading-tight tracking-tight text-navyDeep sm:text-[32px] lg:text-[36px]">
+              Як сформувати капітал в{" "}
+              <span className="text-sky2">довгострок</span>{" "}
+              та вийти на{" "}
+              <span className="text-sky2">стабільний</span>{" "}
+              пасивний дохід{" "}
+              <span className="text-sky2">від $100/місяць</span>
             </p>
 
             {/* Description */}
@@ -64,7 +61,7 @@ export default function Hero() {
 
             {/* Quote */}
             <div className="mt-10 max-w-xl rounded-[18px] border border-sky2/30 bg-blue50 p-6 md:p-7">
-              <p className="font-display italic text-lg leading-snug text-textDark md:text-xl">
+              <p className="text-center font-display italic text-lg leading-snug text-textDark md:text-xl">
                 «Той, хто починає з $100 сьогодні, через 20 років матиме
                 більше, ніж той, хто чекатиме „кращого моменту" і почне з
                 $200 через 5 років»
@@ -73,8 +70,8 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link href="/diagnostics" className="btn-primary flex-col items-center gap-0.5 text-center">
-                Записатися на безкоштовну консультацію
+              <Link href="/diagnostics" className="btn-primary flex-col items-center gap-0.5 text-center animate-pulse-glow">
+                <span className="flex items-center gap-2">Записатися на безкоштовну консультацію <ArrowRight size={18} className="shrink-0" /></span>
                 <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
                   Для початківців в інвестиціях
                 </span>
@@ -83,7 +80,7 @@ export default function Hero() {
                 href="#program"
                 className="border-b border-line pb-1 text-[13px] font-medium text-textDark/80 transition hover:text-sky2"
               >
-                ДІЗНАЙСЯ БІЛЬШЕ ПРО «BY INVEST 3.0» →
+                ДІЗНАЙСЯ БІЛЬШЕ ПРО «BY INVEST 3.0» →
               </Link>
             </div>
 
@@ -114,32 +111,39 @@ export default function Hero() {
           {/* ─── RIGHT col-span-5 ─── */}
           <div className="lg:col-span-5">
             <div className="relative">
-              {/* Glow behind photo */}
+              {/* Glow behind photo — outer large halo */}
               <div
-                className="pointer-events-none absolute inset-0 -z-0 opacity-40 blur-3xl"
+                className="pointer-events-none absolute inset-[-10%] -z-10 blur-3xl"
                 style={{
-                  background:
-                    "radial-gradient(ellipse at center, #94d4fd 0%, transparent 70%)",
+                  background: "radial-gradient(ellipse at 50% 60%, rgba(90,191,255,0.35) 0%, rgba(148,212,253,0.15) 50%, transparent 75%)",
+                }}
+              />
+              {/* Glow — inner tight halo */}
+              <div
+                className="pointer-events-none absolute inset-[5%] -z-10 blur-2xl"
+                style={{
+                  background: "radial-gradient(ellipse at 50% 55%, rgba(90,191,255,0.25) 0%, transparent 65%)",
                 }}
               />
 
-              {/* Portrait — object-contain, full body visible */}
+              {/* Portrait */}
               <div className="relative z-10">
                 <Image
                   src="/images/yulia-hero.png"
                   alt="Юлія Баткалова — інвестор, засновниця BY Finance"
                   width={896}
                   height={1152}
-                  className="h-auto w-full object-contain drop-shadow-[0_30px_60px_rgba(30,63,96,0.18)]"
+                  className="h-auto w-full object-contain"
+                  style={{ filter: "drop-shadow(0 0 40px rgba(90,191,255,0.4)) drop-shadow(0 20px 60px rgba(30,63,96,0.15))" }}
                   priority
                 />
+              </div>
 
-                {/* Badge bottom-left */}
-                <div className="absolute bottom-4 left-4 z-20">
-                  <div className="eyebrow shadow-card backdrop-blur-md border-line bg-white2/95">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-sky2" />
-                    Юлія Баткалова · Засновниця
-                  </div>
+              {/* Badge below photo */}
+              <div className="relative z-20 -mt-1 flex justify-center -translate-x-8">
+                <div className="eyebrow shadow-card backdrop-blur-md border-line bg-white2/95">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-sky2" />
+                  Юлія Баткалова · Засновниця
                 </div>
               </div>
             </div>

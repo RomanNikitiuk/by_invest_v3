@@ -2,23 +2,10 @@
 
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useSharedCountdown } from "@/hooks/useSharedCountdown";
 
 function Countdown() {
-  const getSecondsLeft = () => {
-    const now = new Date();
-    const end = new Date(now);
-    end.setHours(23, 59, 59, 999);
-    return Math.floor((end.getTime() - now.getTime()) / 1000);
-  };
-
-  const [secs, setSecs] = useState(0);
-
-  useEffect(() => {
-    setSecs(getSecondsLeft());
-    const id = setInterval(() => setSecs(getSecondsLeft()), 1000);
-    return () => clearInterval(id);
-  }, []);
+  const secs = useSharedCountdown();
 
   const h = String(Math.floor(secs / 3600)).padStart(2, "0");
   const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
@@ -67,11 +54,11 @@ export default function CTASection() {
 
             <h2 className="h2 mt-5 text-white">
               Дізнайся більше про{" "}
-              <span className="text-sky2">«BY INVEST 3.0»</span>
+              <span className="text-sky2">«BY INVEST 3.0»</span>
             </h2>
 
             <p className="lead mt-4 text-white/70">
-              Записуйтесь на безкоштовну консультацію, щоб дізнатися деталі
+              Запишись на безкоштовну консультацію, щоб дізнатися деталі
               навчання та отримати чіткі поради у вигляді кроків для старту в
               інвестуванні —{" "}
               <span className="font-medium text-sky2">
@@ -109,7 +96,7 @@ export default function CTASection() {
             {/* CTA button */}
             <Link
               href="/diagnostics"
-              className="flex w-full flex-col items-center justify-center gap-0.5 rounded-full bg-white px-8 py-4 font-display text-[15px] font-extrabold text-navyDeep shadow-card transition-all hover:-translate-y-0.5 hover:shadow-cardHover lg:w-auto"
+              className="flex w-full flex-col items-center justify-center gap-0.5 rounded-full bg-sky-gradient px-8 py-4 font-display text-[15px] font-extrabold text-navyDeep animate-pulse-glow shadow-sky transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(90,191,255,0.45)] lg:w-auto"
             >
               <span className="flex items-center justify-center gap-2 text-center">
                 Записатися на безкоштовну консультацію

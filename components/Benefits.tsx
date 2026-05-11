@@ -26,7 +26,7 @@ const ITEMS = [
   {
     icon: Users,
     title: "Підтримка кураторів",
-    text: "Особистий куратор, чат випуску і регулярний звʼязок з командою BY finance.",
+    text: "Особистий куратор, чат випуску і регулярний звʼязок з командою BY finance.",
   },
   {
     icon: Wallet,
@@ -45,7 +45,7 @@ export default function Benefits() {
     <section id="benefits" className="section section-blue">
       <div className="container-px">
         <div className="mx-auto max-w-[760px] text-center">
-          <span className="eyebrow">Чому BY finance</span>
+          <span className="eyebrow">Чому BY finance</span>
           <h2 className="h2 mt-[18px]">
             6 причин, чому учні обирають{" "}
             <span className="title-gradient">наш курс</span>

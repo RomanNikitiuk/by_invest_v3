@@ -12,8 +12,8 @@ const AWARDS = [
   },
   {
     icon: Award,
-    title: "Премія за розвиток дитячої фінансової грамотності",
-    by: "FinBloggerAwards, 2024",
+    title: "Найкращий освітній проєкт в інвестиціях",
+    by: "Срібло FinAwards, 2024",
   },
   {
     icon: Medal,
@@ -52,7 +52,7 @@ export default function Results() {
             <span className="title-gradient">підтверджують якість</span>
           </h2>
           <p className="lead mt-4">
-            BY finance — це не просто курс, а визнаний у медіа та індустрії
+            BY INVEST — це не просто курс, а визнаний у медіа та індустрії
             бренд фінансової освіти.
           </p>
         </div>

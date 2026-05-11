@@ -2,29 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { useSharedCountdown } from "@/hooks/useSharedCountdown";
 
 function HeaderCountdown() {
-  const getSecondsLeft = () => {
-    const now = new Date();
-    const end = new Date(now);
-    end.setDate(end.getDate() + 1);
-    end.setHours(23, 59, 59, 999);
-    return Math.floor((end.getTime() - now.getTime()) / 1000);
-  };
-  const [secs, setSecs] = useState(0);
-  useEffect(() => {
-    setSecs(getSecondsLeft());
-    const id = setInterval(() => setSecs(getSecondsLeft()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const d = Math.floor(secs / 86400);
-  const h = String(Math.floor((secs % 86400) / 3600)).padStart(2, "0");
+  const secs = useSharedCountdown();
+  const h = String(Math.floor(secs / 3600)).padStart(2, "0");
   const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
   const s = String(secs % 60).padStart(2, "0");
   return (
     <span className="tabular-nums text-sky2 font-bold">
-      {d > 0 ? `${d}Д ` : ""}{h}:{m}:{s}
+      {h}:{m}:{s}
     </span>
   );
 }
@@ -88,8 +76,8 @@ export default function Header() {
             Безкоштовна консультація:
             <HeaderCountdown />
           </div>
-          <Link href="/diagnostics" className="btn-primary flex-col items-center gap-0 text-center">
-            <span>Консультація →</span>
+          <Link href="/diagnostics" className="btn-primary flex-col items-center gap-0 text-center animate-pulse-glow">
+            <span className="flex items-center gap-1.5">Консультація <ArrowRight size={16} className="shrink-0" /></span>
             <span className="text-[9px] font-semibold uppercase tracking-[1px] opacity-70 leading-none">
               Для початківців в інвестиціях
             </span>
@@ -121,9 +109,9 @@ export default function Header() {
             <Link
               href="/diagnostics"
               onClick={() => setOpen(false)}
-              className="btn-primary mt-3 flex-col items-center gap-0 text-center"
+              className="btn-primary mt-3 flex-col items-center gap-0 text-center animate-pulse-glow"
             >
-              <span>Записатися на консультацію</span>
+              <span className="flex items-center gap-2">Записатися на консультацію <ArrowRight size={16} className="shrink-0" /></span>
               <span className="text-[9px] font-semibold uppercase tracking-[1px] opacity-70 leading-none">
                 Для початківців в інвестиціях
               </span>

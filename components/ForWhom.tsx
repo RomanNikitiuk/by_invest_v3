@@ -32,7 +32,7 @@ const PAIN_POINTS = [
   {
     emoji: "🌍",
     title: "Виведення грошей за кордон",
-    text: "Не розумієш, як відкрити брокера за межами України та зайти в активи.",
+    text: "Не розумієш як відкрити рахунок у брокера за межами України та зайти в активи.",
   },
   {
     emoji: "🌱",
@@ -52,7 +52,7 @@ export default function ForWhom() {
         <div className="mx-auto max-w-[760px] text-center">
           <span className="eyebrow">Для кого цей курс</span>
           <h2 className="h2 mt-[18px]">
-            Якщо хоч одне з цього —{" "}
+            Якщо хоча б одне з цього —{" "}
             <span className="title-gradient">про тебе,</span>{" "}
             ти в правильному місці
           </h2>

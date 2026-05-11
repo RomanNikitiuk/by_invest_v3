@@ -22,9 +22,11 @@ export default function Home() {
         <Hero />
         <ForWhom />
         <CTASection />
-        <Cases />
-        <About />
-        <Program />
+        <div style={{ background: "linear-gradient(180deg, #d6ecfc 0%, #ffffff 50%, #d6ecfc 100%)" }}>
+          <Cases />
+          <About />
+          <Program />
+        </div>
         <Roadmap />
         <Results />
         <Bonuses />
