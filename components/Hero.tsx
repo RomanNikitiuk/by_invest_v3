@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
+      className="relative overflow-hidden isolate pt-32 pb-20 md:pt-40 md:pb-28"
       style={{
         background:
           "linear-gradient(180deg, #ffffff 0%, #d6ecfc 100%)",
@@ -21,14 +21,14 @@ export default function Hero() {
 
 
       <div className="container-px relative">
-        <div className="grid items-center gap-10 lg:grid-cols-12">
+        <div className="grid min-w-0 items-center gap-10 lg:grid-cols-12">
 
           {/* ─── LEFT col-span-7 ─── */}
-          <div className="lg:col-span-7">
+          <div className="min-w-0 lg:col-span-7">
 
             {/* Chip */}
-            <span className="eyebrow">
-              <span className="h-2 w-2 rounded-full bg-sky2 ring-4 ring-sky2/25" />
+            <span className="inline-flex items-center gap-2 rounded-2xl bg-sky2/[0.18] px-4 py-1.5 text-[12px] font-bold uppercase tracking-[2px] text-navyDeep">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-sky2 ring-4 ring-sky2/25" />
               BY&nbsp;FINANCE · Школа фінансової грамотності та інвестування, зареєстрована в 2021р
             </span>
 
@@ -70,7 +70,7 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link href="/diagnostics" className="btn-primary flex-col items-center gap-0.5 text-center animate-pulse-glow">
+              <Link href="/diagnostics" className="btn-primary w-full sm:w-auto flex-col items-center gap-0.5 text-center animate-pulse-glow">
                 <span className="flex items-center gap-2">Записатися на безкоштовну консультацію <ArrowRight size={18} className="shrink-0" /></span>
                 <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
                   Для початківців в інвестиціях
@@ -109,11 +109,11 @@ export default function Hero() {
           </div>
 
           {/* ─── RIGHT col-span-5 ─── */}
-          <div className="lg:col-span-5">
+          <div className="min-w-0 lg:col-span-5">
             <div className="relative">
               {/* Glow behind photo — outer large halo */}
               <div
-                className="pointer-events-none absolute inset-[-10%] -z-10 blur-3xl"
+                className="pointer-events-none absolute inset-0 lg:inset-[-10%] -z-10 blur-3xl"
                 style={{
                   background: "radial-gradient(ellipse at 50% 60%, rgba(90,191,255,0.35) 0%, rgba(148,212,253,0.15) 50%, transparent 75%)",
                 }}

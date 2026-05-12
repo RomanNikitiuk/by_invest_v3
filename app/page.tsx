@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main style={{ overflowX: "clip" }}>
         <Hero />
         <ForWhom />
         <CTASection />

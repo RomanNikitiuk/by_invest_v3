@@ -106,7 +106,7 @@ const BONUSES: Bonus[] = [
 
 export default function Bonuses() {
   return (
-    <section id="bonuses" className="section bg-white">
+    <section id="bonuses" className="section bg-white overflow-hidden">
       <div className="container-px">
         <div
           className="relative overflow-hidden rounded-[28px] p-8 text-white sm:p-12 lg:p-14"
