@@ -128,10 +128,10 @@ export default function Footer() {
             захищені.
           </div>
           <div className="flex gap-6">
-            <Link href="/privacy" className="transition-colors hover:text-sky2">
+            <Link href="#" className="transition-colors hover:text-sky2">
               Політика конфіденційності
             </Link>
-            <Link href="/offer" className="transition-colors hover:text-sky2">
+            <Link href="#" className="transition-colors hover:text-sky2">
               Публічна оферта
             </Link>
           </div>
