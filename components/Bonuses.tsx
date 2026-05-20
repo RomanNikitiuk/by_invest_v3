@@ -165,7 +165,7 @@ export default function Bonuses() {
               return (
                 <div
                   key={i}
-                  className="group relative overflow-hidden rounded-[18px] bg-white/10 p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/15"
+                  className="group relative overflow-hidden rounded-[18px] bg-white/10 p-6 transition-all hover:-translate-y-0.5 hover:bg-white/15"
                   style={{ border: "1px solid rgba(255,255,255,0.18)" }}
                 >
                   <div className="flex items-start gap-4">

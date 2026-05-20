@@ -7,6 +7,14 @@ import { useSharedCountdown } from "@/hooks/useSharedCountdown";
 function Countdown() {
   const secs = useSharedCountdown();
 
+  if (secs === null) {
+    return (
+      <div className="font-display text-[28px] font-extrabold tabular-nums text-white/30">
+        --:--:--
+      </div>
+    );
+  }
+
   const h = String(Math.floor(secs / 3600)).padStart(2, "0");
   const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
   const s = String(secs % 60).padStart(2, "0");
@@ -79,7 +87,7 @@ export default function CTASection() {
           {/* Right */}
           <div className="flex flex-col items-start gap-5 lg:items-end">
             {/* Timer widget */}
-            <div className="w-full rounded-[18px] border border-white/15 bg-white/8 px-6 py-4 backdrop-blur-sm lg:w-auto lg:min-w-[320px]"
+            <div className="w-full rounded-[18px] border border-white/15 px-6 py-4 lg:w-auto lg:min-w-[320px]"
               style={{ background: "rgba(255,255,255,0.07)" }}
             >
               <div className="flex items-center justify-between gap-6">
