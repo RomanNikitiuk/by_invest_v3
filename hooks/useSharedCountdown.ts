@@ -10,7 +10,7 @@ function getSecondsUntilMidnight(): number {
 }
 
 export function useSharedCountdown() {
-  const [secs, setSecs] = useState(0);
+  const [secs, setSecs] = useState<number | null>(null);
 
   useEffect(() => {
     setSecs(getSecondsUntilMidnight());
