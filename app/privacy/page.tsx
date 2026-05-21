@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           <h1 className="font-display text-[32px] font-extrabold leading-tight tracking-tight text-navyDeep sm:text-[40px]">
             Політика конфіденційності
           </h1>
-          <p className="mt-3 text-[14px] text-muted">Дата оновлення: 15 травня 2026 року</p>
+          <p className="mt-3 text-[14px] text-muted">Дата оновлення: 21 травня 2026 року</p>
 
           <div className="prose-doc mt-10 space-y-8 text-[15px] leading-relaxed text-text">
 
@@ -35,7 +35,7 @@ export default function PrivacyPage() {
               <p>1.2. Власником та розпорядником персональних даних є:<br />
               Фізична особа-підприємець Баткалова Юлія Юріївна<br />
               ІПН: 3213921163<br />
-              Адреса: Україна, 04112, м. Київ, вул. Сікорського Ігоря Авіаконструктора, буд. 4-Б, кв. 149<br />
+              Адреса: Україна, 04112, м. Київ, вул. Сікорського Ігоря Авіаконструктора, буд. 4-Б<br />
               Email: <a href="mailto:by.finance.school@gmail.com" className="text-sky2 hover:underline">by.finance.school@gmail.com</a></p>
               <p>1.3. Політика розроблена відповідно до Закону України «Про захист персональних даних» та положень Цивільного кодексу України.</p>
               <p>1.4. Використовуючи сайт, Telegram-бот, платформи навчання або оплачуючи послуги, Користувач надає згоду на обробку своїх персональних даних.</p>
