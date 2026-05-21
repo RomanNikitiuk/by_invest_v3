@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import Link from "next/link";
+import { trackEvent } from "@/lib/trackEvent";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -15,37 +16,113 @@ import {
 import Footer from "@/components/Footer";
 
 const COUNTRY_CODES = [
+  // Популярні (вгорі)
   { code: "+380", label: "🇺🇦 +380 (Україна)" },
-  { code: "+48", label: "🇵🇱 +48 (Польща)" },
-  { code: "+49", label: "🇩🇪 +49 (Німеччина)" },
-  { code: "+44", label: "🇬🇧 +44 (Велика Британія)" },
-  { code: "+1", label: "🇺🇸 +1 (США/Канада)" },
+  { code: "+48",  label: "🇵🇱 +48 (Польща)" },
+  { code: "+49",  label: "🇩🇪 +49 (Німеччина)" },
+  { code: "+44",  label: "🇬🇧 +44 (Велика Британія)" },
+  { code: "+1",   label: "🇺🇸 +1 (США / Канада)" },
   { code: "+972", label: "🇮🇱 +972 (Ізраїль)" },
   { code: "+420", label: "🇨🇿 +420 (Чехія)" },
-  { code: "+34", label: "🇪🇸 +34 (Іспанія)" },
-  { code: "+39", label: "🇮🇹 +39 (Італія)" },
-  { code: "+33", label: "🇫🇷 +33 (Франція)" },
+  { code: "+34",  label: "🇪🇸 +34 (Іспанія)" },
+  { code: "+39",  label: "🇮🇹 +39 (Італія)" },
+  { code: "+33",  label: "🇫🇷 +33 (Франція)" },
+  { code: "+31",  label: "🇳🇱 +31 (Нідерланди)" },
+  { code: "+32",  label: "🇧🇪 +32 (Бельгія)" },
+  { code: "+43",  label: "🇦🇹 +43 (Австрія)" },
+  { code: "+41",  label: "🇨🇭 +41 (Швейцарія)" },
+  { code: "+46",  label: "🇸🇪 +46 (Швеція)" },
+  { code: "+47",  label: "🇳🇴 +47 (Норвегія)" },
+  { code: "+45",  label: "🇩🇰 +45 (Данія)" },
+  { code: "+358", label: "🇫🇮 +358 (Фінляндія)" },
+  { code: "+351", label: "🇵🇹 +351 (Португалія)" },
+  { code: "+30",  label: "🇬🇷 +30 (Греція)" },
+  { code: "+36",  label: "🇭🇺 +36 (Угорщина)" },
+  { code: "+421", label: "🇸🇰 +421 (Словаччина)" },
+  { code: "+386", label: "🇸🇮 +386 (Словенія)" },
+  { code: "+385", label: "🇭🇷 +385 (Хорватія)" },
+  { code: "+40",  label: "🇷🇴 +40 (Румунія)" },
+  { code: "+359", label: "🇧🇬 +359 (Болгарія)" },
+  { code: "+370", label: "🇱🇹 +370 (Литва)" },
+  { code: "+371", label: "🇱🇻 +371 (Латвія)" },
+  { code: "+372", label: "🇪🇪 +372 (Естонія)" },
+  { code: "+353", label: "🇮🇪 +353 (Ірландія)" },
+  { code: "+356", label: "🇲🇹 +356 (Мальта)" },
+  { code: "+352", label: "🇱🇺 +352 (Люксембург)" },
+  { code: "+354", label: "🇮🇸 +354 (Ісландія)" },
+  { code: "+7",   label: "🇰🇿 +7 (Казахстан)" },
+  { code: "+994", label: "🇦🇿 +994 (Азербайджан)" },
+  { code: "+995", label: "🇬🇪 +995 (Грузія)" },
+  { code: "+374", label: "🇦🇲 +374 (Вірменія)" },
+  { code: "+998", label: "🇺🇿 +998 (Узбекистан)" },
+  { code: "+90",  label: "🇹🇷 +90 (Туреччина)" },
+  { code: "+971", label: "🇦🇪 +971 (ОАЕ)" },
+  { code: "+966", label: "🇸🇦 +966 (Саудівська Аравія)" },
+  { code: "+974", label: "🇶🇦 +974 (Катар)" },
+  { code: "+965", label: "🇰🇼 +965 (Кувейт)" },
+  { code: "+961", label: "🇱🇧 +961 (Ліван)" },
+  { code: "+20",  label: "🇪🇬 +20 (Єгипет)" },
+  { code: "+27",  label: "🇿🇦 +27 (ПАР)" },
+  { code: "+91",  label: "🇮🇳 +91 (Індія)" },
+  { code: "+86",  label: "🇨🇳 +86 (Китай)" },
+  { code: "+81",  label: "🇯🇵 +81 (Японія)" },
+  { code: "+82",  label: "🇰🇷 +82 (Південна Корея)" },
+  { code: "+65",  label: "🇸🇬 +65 (Сінгапур)" },
+  { code: "+61",  label: "🇦🇺 +61 (Австралія)" },
+  { code: "+64",  label: "🇳🇿 +64 (Нова Зеландія)" },
+  { code: "+55",  label: "🇧🇷 +55 (Бразилія)" },
+  { code: "+54",  label: "🇦🇷 +54 (Аргентина)" },
+  { code: "+52",  label: "🇲🇽 +52 (Мексика)" },
 ];
+
+function validate(form: HTMLFormElement): Record<string, string> {
+  const errs: Record<string, string> = {};
+
+  const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+  if (!name) errs.name = "Введіть ваше імʼя";
+  else if (name.length < 2) errs.name = "Імʼя занадто коротке";
+
+  const phone = (form.elements.namedItem("phone") as HTMLInputElement).value.trim();
+  if (!phone) errs.phone = "Введіть номер телефону";
+  else if (phone.replace(/\D/g, "").length < 6) errs.phone = "Некоректний номер телефону";
+
+  const telegram = (form.elements.namedItem("telegram") as HTMLInputElement).value.trim();
+  if (!telegram) errs.telegram = "Введіть ваш Telegram";
+  else if (!/^@?[a-zA-Z0-9_]{4,}$/.test(telegram)) errs.telegram = "Мінімум 4 символи: літери, цифри, _";
+
+  const location = (form.elements.namedItem("location") as HTMLInputElement).value.trim();
+  if (!location) errs.location = "Вкажіть де ви проживаєте";
+
+  return errs;
+}
 
 export default function DiagnosticsPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
     setError("");
 
     const form = e.currentTarget;
+    const errs = validate(form);
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+    setErrors({});
+    setLoading(true);
+
     const data = {
-      name:     (form.elements.namedItem("name")        as HTMLInputElement).value,
+      name:     (form.elements.namedItem("name")        as HTMLInputElement).value.trim(),
       phone:    (form.elements.namedItem("countryCode") as HTMLSelectElement).value +
                 " " +
-                (form.elements.namedItem("phone")       as HTMLInputElement).value,
-      telegram: (form.elements.namedItem("telegram")    as HTMLInputElement).value,
-      location: (form.elements.namedItem("location")    as HTMLInputElement).value,
-      question: (form.elements.namedItem("question")    as HTMLTextAreaElement).value,
+                (form.elements.namedItem("phone")       as HTMLInputElement).value.trim(),
+      telegram: (form.elements.namedItem("telegram")    as HTMLInputElement).value.trim(),
+      location: (form.elements.namedItem("location")    as HTMLInputElement).value.trim(),
+      question: (form.elements.namedItem("question")    as HTMLTextAreaElement).value.trim(),
     };
 
     try {
@@ -55,8 +132,10 @@ export default function DiagnosticsPage() {
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error("server error");
+      trackEvent("form_submit", { section: "diagnostics", location: "success" });
       setSubmitted(true);
     } catch {
+      trackEvent("form_submit", { section: "diagnostics", location: "error" });
       setError("Щось пішло не так. Спробуй ще раз або напиши нам у Telegram.");
     } finally {
       setLoading(false);
@@ -146,17 +225,17 @@ export default function DiagnosticsPage() {
                     className="grid gap-5"
                     noValidate
                   >
-                    <Field label="Ім'я *" icon={<User size={16} />}>
+                    <Field label="Ім'я *" icon={<User size={16} />} error={errors.name}>
                       <input
-                        required
                         name="name"
                         type="text"
                         placeholder="Ваше імʼя"
-                        className="input"
+                        className={`input${errors.name ? " input-error" : ""}`}
+                        onChange={() => errors.name && setErrors((p) => ({ ...p, name: "" }))}
                       />
                     </Field>
 
-                    <Field label="Телефон *" icon={<Phone size={16} />}>
+                    <Field label="Телефон *" icon={<Phone size={16} />} error={errors.phone}>
                       <div className="grid grid-cols-[160px_1fr] gap-2">
                         <select
                           name="countryCode"
@@ -175,36 +254,37 @@ export default function DiagnosticsPage() {
                           ))}
                         </select>
                         <input
-                          required
                           name="phone"
                           type="tel"
                           inputMode="tel"
                           placeholder="00 000 00 00"
-                          className="input"
+                          className={`input${errors.phone ? " input-error" : ""}`}
+                          onChange={() => errors.phone && setErrors((p) => ({ ...p, phone: "" }))}
                         />
                       </div>
                     </Field>
 
-                    <Field label="Telegram *" icon={<Send size={16} />}>
+                    <Field label="Telegram *" icon={<Send size={16} />} error={errors.telegram}>
                       <input
-                        required
                         name="telegram"
                         type="text"
                         placeholder="@username"
-                        className="input"
+                        className={`input${errors.telegram ? " input-error" : ""}`}
+                        onChange={() => errors.telegram && setErrors((p) => ({ ...p, telegram: "" }))}
                       />
                     </Field>
 
                     <Field
                       label="Де зараз проживаєте? *"
                       icon={<MapPin size={16} />}
+                      error={errors.location}
                     >
                       <input
-                        required
                         name="location"
                         type="text"
                         placeholder="Країна, місто (напр. Польща, Варшава)"
-                        className="input"
+                        className={`input${errors.location ? " input-error" : ""}`}
+                        onChange={() => errors.location && setErrors((p) => ({ ...p, location: "" }))}
                       />
                     </Field>
 
@@ -289,6 +369,14 @@ export default function DiagnosticsPage() {
           background-position: right 14px center;
           padding-right: 36px;
         }
+        .input-error {
+          border-color: #ef4444;
+          box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+        }
+        .input-error:focus {
+          border-color: #ef4444;
+          box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.18);
+        }
       `}</style>
     </div>
   );
@@ -298,11 +386,13 @@ function Field({
   label,
   icon,
   hint,
+  error,
   children,
 }: {
   label: string;
   icon?: React.ReactNode;
   hint?: string;
+  error?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -312,7 +402,9 @@ function Field({
         {label}
       </div>
       {children}
-      {hint ? (
+      {error ? (
+        <div className="mt-1.5 text-[12px] font-medium text-red-500">{error}</div>
+      ) : hint ? (
         <div className="mt-1.5 text-[12px] text-muted">{hint}</div>
       ) : null}
     </label>
