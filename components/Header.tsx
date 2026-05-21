@@ -82,7 +82,7 @@ export default function Header() {
             Безкоштовна консультація:
             <HeaderCountdown />
           </div>
-          <Link href="/diagnostics" onClick={() => trackEvent("cta_click", { location: "header_desktop" })} className="btn-primary flex-col items-center gap-0 text-center animate-pulse-glow">
+          <Link href="/diagnostics" onClick={() => trackEvent("cta_click", { location: "header" })} className="btn-primary flex-col items-center gap-0 text-center animate-pulse-glow">
             <span className="flex items-center gap-1.5">Консультація <ArrowRight size={16} className="shrink-0" /></span>
             <span className="text-[9px] font-semibold uppercase tracking-[1px] opacity-70 leading-none">
               Для початківців в інвестиціях
@@ -114,7 +114,7 @@ export default function Header() {
             ))}
             <Link
               href="/diagnostics"
-              onClick={() => { setOpen(false); trackEvent("cta_click", { location: "header_mobile" }); }}
+              onClick={() => { setOpen(false); trackEvent("cta_click", { location: "header" }); }}
               className="btn-primary mt-3 flex-col items-center gap-0 text-center animate-pulse-glow"
             >
               <span className="flex items-center gap-2">Записатися на консультацію <ArrowRight size={16} className="shrink-0" /></span>
