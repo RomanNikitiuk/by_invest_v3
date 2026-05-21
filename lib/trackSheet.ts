@@ -11,6 +11,7 @@ export async function trackSheet(
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ event, ...props }),
+      keepalive: true, // ensures request completes even after page navigation
     });
   } catch {
     // Silent fail — analytics should never break UX
