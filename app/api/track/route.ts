@@ -10,19 +10,27 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
+    // Geo from Vercel headers (free, no external API needed)
+    const country = req.headers.get("x-vercel-ip-country") ?? "";
+    const city    = req.headers.get("x-vercel-ip-city")
+      ? decodeURIComponent(req.headers.get("x-vercel-ip-city")!)
+      : "";
+
     // Forward to Google Apps Script
     await fetch(scriptUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        event: body.event ?? "",
-        location: body.location ?? "",
-        tariff: body.tariff ?? "",
-        section: body.section ?? "",
-        direction: body.direction ?? "",
-        module: body.module ?? "",
+        event:        body.event ?? "",
+        location:     body.location ?? "",
+        tariff:       body.tariff ?? "",
+        section:      body.section ?? "",
+        direction:    body.direction ?? "",
+        module:       body.module ?? "",
         question_idx: body.question_idx ?? "",
-        timestamp: new Date().toISOString(),
+        country,
+        city,
+        timestamp:    new Date().toISOString(),
       }),
     });
 
