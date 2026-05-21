@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { useSharedCountdown } from "@/hooks/useSharedCountdown";
+import { trackEvent } from "@/lib/trackEvent";
 
 function Countdown() {
   const secs = useSharedCountdown();
@@ -104,6 +105,7 @@ export default function CTASection() {
             {/* CTA button */}
             <Link
               href="/diagnostics"
+              onClick={() => trackEvent("cta_click", { location: "cta_section" })}
               className="flex w-full flex-col items-center justify-center gap-0.5 rounded-full bg-sky-gradient px-8 py-4 font-display text-[15px] font-extrabold text-navyDeep animate-pulse-glow shadow-sky transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(90,191,255,0.45)] lg:w-auto"
             >
               <span className="flex items-center justify-center gap-2 text-center">
