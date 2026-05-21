@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { track } from "@vercel/analytics";
+import { trackEvent } from "@/lib/trackEvent";
 import {
   ArrowLeft,
   ArrowRight,
@@ -130,7 +130,7 @@ function Carousel<T>({
       {/* Controls */}
       <div className="mt-5 flex items-center gap-3">
         <button
-          onClick={() => { prev(); track("slider_click", { section: "reviews", direction: "prev" }); }}
+          onClick={() => { prev(); trackEvent("slider_click", { section: "reviews", direction: "prev" }); }}
           disabled={current === 0}
           aria-label="Попередній"
           className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:shadow-sky disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
@@ -138,7 +138,7 @@ function Carousel<T>({
           <ArrowLeft size={16} />
         </button>
         <button
-          onClick={() => { next(); track("slider_click", { section: "reviews", direction: "next" }); }}
+          onClick={() => { next(); trackEvent("slider_click", { section: "reviews", direction: "next" }); }}
           disabled={current === items.length - 1}
           aria-label="Наступний"
           className="grid h-11 w-11 place-items-center rounded-full border border-sky2 bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:shadow-sky disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"

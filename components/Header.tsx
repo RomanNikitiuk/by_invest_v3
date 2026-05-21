@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useSharedCountdown } from "@/hooks/useSharedCountdown";
-import { track } from "@vercel/analytics";
+import { trackEvent } from "@/lib/trackEvent";
 
 function HeaderCountdown() {
   const secs = useSharedCountdown();
@@ -82,7 +82,7 @@ export default function Header() {
             Безкоштовна консультація:
             <HeaderCountdown />
           </div>
-          <Link href="/diagnostics" onClick={() => track("cta_click", { location: "header_desktop" })} className="btn-primary flex-col items-center gap-0 text-center animate-pulse-glow">
+          <Link href="/diagnostics" onClick={() => trackEvent("cta_click", { location: "header_desktop" })} className="btn-primary flex-col items-center gap-0 text-center animate-pulse-glow">
             <span className="flex items-center gap-1.5">Консультація <ArrowRight size={16} className="shrink-0" /></span>
             <span className="text-[9px] font-semibold uppercase tracking-[1px] opacity-70 leading-none">
               Для початківців в інвестиціях
@@ -93,7 +93,7 @@ export default function Header() {
         <button
           aria-label="Меню"
           className="rounded-lg border border-line p-2 text-textDark lg:hidden"
-          onClick={() => { const next = !open; setOpen(next); track("menu_toggle", { action: next ? "open" : "close" }); }}
+          onClick={() => { const next = !open; setOpen(next); trackEvent("menu_toggle", { action: next ? "open" : "close" }); }}
         >
           {open ? <X size={18} /> : <Menu size={18} />}
         </button>
@@ -114,7 +114,7 @@ export default function Header() {
             ))}
             <Link
               href="/diagnostics"
-              onClick={() => { setOpen(false); track("cta_click", { location: "header_mobile" }); }}
+              onClick={() => { setOpen(false); trackEvent("cta_click", { location: "header_mobile" }); }}
               className="btn-primary mt-3 flex-col items-center gap-0 text-center animate-pulse-glow"
             >
               <span className="flex items-center gap-2">Записатися на консультацію <ArrowRight size={16} className="shrink-0" /></span>

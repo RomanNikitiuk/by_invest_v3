@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, Check, Crown, ShieldCheck, Sparkles, Star } from "lucide-react";
-import { track } from "@vercel/analytics";
+import { trackEvent } from "@/lib/trackEvent";
 
 type Tariff = {
   id: "start" | "vip" | "max";
@@ -253,7 +253,7 @@ export default function Tariffs() {
                     href="https://secure.wayforpay.com/payment/saad650321f13"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => track("tariff_reserve_click", { tariff: t.id })}
+                    onClick={() => trackEvent("tariff_reserve_click", { tariff: t.id })}
                     className={[
                       "mt-5 block text-center font-extrabold",
                       isDark
@@ -269,7 +269,7 @@ export default function Tariffs() {
                     href={t.bookHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => track("tariff_buy_click", { tariff: t.id })}
+                    onClick={() => trackEvent("tariff_buy_click", { tariff: t.id })}
                     className={[
                       "mt-3 block text-center font-extrabold animate-pulse-glow",
                       isDark ? "btn-secondary" : "btn-primary",
@@ -304,7 +304,7 @@ export default function Tariffs() {
                 </p>
               </div>
             </div>
-            <Link href="/diagnostics" onClick={() => track("cta_click", { location: "tariffs_guarantee" })} className="btn-primary shrink-0 flex-col items-center gap-0.5 text-center animate-pulse-glow">
+            <Link href="/diagnostics" onClick={() => trackEvent("cta_click", { location: "tariffs_guarantee" })} className="btn-primary shrink-0 flex-col items-center gap-0.5 text-center animate-pulse-glow">
               <span className="flex items-center gap-2">Записатися на консультацію <ArrowRight size={18} className="shrink-0" /></span>
               <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
                 Для початківців в інвестиціях

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BadgeCheck } from "lucide-react";
-import { track } from "@vercel/analytics";
+import { trackEvent } from "@/lib/trackEvent";
 
 /* ─── Animated counter ─── */
 function Counter({
@@ -165,7 +165,7 @@ export default function About() {
             </div>
 
             <div className="mt-8">
-              <Link href="/diagnostics" onClick={() => track("cta_click", { location: "about" })} className="btn-primary flex-col items-center gap-0.5 text-center animate-pulse-glow">
+              <Link href="/diagnostics" onClick={() => trackEvent("cta_click", { location: "about" })} className="btn-primary flex-col items-center gap-0.5 text-center animate-pulse-glow">
                 <span className="flex items-center gap-2">Безкоштовна консультація з командою <ArrowRight size={18} /></span>
                 <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
                   Для початківців в інвестиціях
