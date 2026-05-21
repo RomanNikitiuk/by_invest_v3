@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
+  const scriptUrl = process.env.GAS_SCRIPT_URL;
 
   if (!scriptUrl) {
-    return NextResponse.json({ error: "GOOGLE_SCRIPT_URL not set" }, { status: 500 });
+    return NextResponse.json({ error: "GAS_SCRIPT_URL not set" }, { status: 500 });
   }
 
   try {
