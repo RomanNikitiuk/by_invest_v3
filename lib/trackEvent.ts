@@ -10,6 +10,11 @@ export function trackEvent(
   event: string,
   props?: Record<string, string | number>
 ) {
-  track(event, props);
+  // trackSheet first — keepalive fetch must start before navigation
   trackSheet(event, props);
+  try {
+    track(event, props);
+  } catch {
+    // silent fail
+  }
 }
