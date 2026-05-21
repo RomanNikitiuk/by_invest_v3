@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Check, ChevronDown, Sparkles, Target } from "lucide-react";
-import { trackEvent } from "@/lib/trackEvent";
 
 type Module = {
   number: string;
@@ -134,7 +133,7 @@ export default function Program() {
                 }
               >
                 <button
-                  onClick={() => { setOpenIdx(open ? null : idx); if (!open) trackEvent("accordion_open", { section: "program", module: m.number }); }}
+                  onClick={() => setOpenIdx(open ? null : idx)}
                   className="flex w-full items-center justify-between gap-6 px-5 py-5 text-left sm:px-7 sm:py-6"
                 >
                   <div className="flex items-start gap-5">

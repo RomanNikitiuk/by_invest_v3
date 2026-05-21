@@ -1,8 +1,5 @@
-"use client";
-
 import Link from "next/link";
 import { Instagram, Send, Youtube } from "lucide-react";
-import { trackEvent } from "@/lib/trackEvent";
 
 export default function Footer() {
   return (
@@ -32,7 +29,6 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Telegram"
-                onClick={() => trackEvent("social_click", { section: "footer", location: "footer_telegram" })}
                 className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:text-sky2 hover:shadow-sky"
               >
                 <Send size={16} />
@@ -42,7 +38,6 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="YouTube"
-                onClick={() => trackEvent("social_click", { section: "footer", location: "footer_youtube" })}
                 className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:text-sky2 hover:shadow-sky"
               >
                 <Youtube size={16} />
@@ -52,7 +47,6 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                onClick={() => trackEvent("social_click", { section: "footer", location: "footer_instagram" })}
                 className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:text-sky2 hover:shadow-sky"
               >
                 <Instagram size={16} />
@@ -117,7 +111,6 @@ export default function Footer() {
               <li>
                 <Link
                   href="/diagnostics"
-                  onClick={() => trackEvent("cta_click", { location: "footer" })}
                   className="text-text transition-colors hover:text-sky2"
                 >
                   Записатися на консультацію
@@ -135,10 +128,10 @@ export default function Footer() {
             захищені.
           </div>
           <div className="flex gap-6">
-            <Link href="/privacy" onClick={() => trackEvent("legal_click", { page: "privacy" })} className="transition-colors hover:text-sky2">
+            <Link href="#" className="transition-colors hover:text-sky2">
               Політика конфіденційності
             </Link>
-            <Link href="/offer" onClick={() => trackEvent("legal_click", { page: "offer" })} className="transition-colors hover:text-sky2">
+            <Link href="#" className="transition-colors hover:text-sky2">
               Публічна оферта
             </Link>
           </div>

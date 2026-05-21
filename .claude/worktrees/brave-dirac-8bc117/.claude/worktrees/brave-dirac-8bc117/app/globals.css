@@ -170,23 +170,6 @@ body {
   .eyebrow-inv {
     @apply inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[2px] text-white;
   }
-
-  /* Legal pages prose */
-  .prose-doc h2 {
-    font-family: Raleway, sans-serif;
-    font-size: 17px;
-    font-weight: 800;
-    color: #1e3f60;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .prose-doc p { margin-bottom: 10px; color: #404040; }
-  .prose-doc ul { list-style: none; padding: 0; margin: 8px 0 10px 0; }
-  .prose-doc ul li { padding-left: 20px; position: relative; margin-bottom: 6px; color: #404040; }
-  .prose-doc ul li::before { content: "—"; position: absolute; left: 0; color: #5abfff; font-weight: 700; }
-  .prose-doc section { padding-bottom: 24px; border-bottom: 1px solid rgba(30,63,96,0.08); }
-  .prose-doc section:last-child { border-bottom: none; }
 }
 
 /* ============ Utilities ============ */

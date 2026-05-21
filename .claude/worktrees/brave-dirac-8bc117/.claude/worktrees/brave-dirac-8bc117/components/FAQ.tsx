@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { trackEvent } from "@/lib/trackEvent";
 
 const FAQS = [
   {
@@ -73,7 +72,7 @@ export default function FAQ() {
                 ].join(" ")}
               >
                 <button
-                  onClick={() => { setOpenIdx(open ? null : idx); if (!open) trackEvent("accordion_open", { section: "faq", question_idx: idx + 1 }); }}
+                  onClick={() => setOpenIdx(open ? null : idx)}
                   className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                 >
                   <span className="font-display text-[16px] font-bold text-textDark sm:text-[17px]">
