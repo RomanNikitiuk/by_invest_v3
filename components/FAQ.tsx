@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { track } from "@vercel/analytics";
 
 const FAQS = [
   {
@@ -72,7 +73,7 @@ export default function FAQ() {
                 ].join(" ")}
               >
                 <button
-                  onClick={() => setOpenIdx(open ? null : idx)}
+                  onClick={() => { setOpenIdx(open ? null : idx); if (!open) track("accordion_open", { section: "faq", question_idx: idx + 1 }); }}
                   className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                 >
                   <span className="font-display text-[16px] font-bold text-textDark sm:text-[17px]">

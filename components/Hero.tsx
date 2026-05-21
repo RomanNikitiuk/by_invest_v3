@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck } from "lucide-react";
+import { track } from "@vercel/analytics";
 
 const STATS = [
   { k: "3 700+", v: "Студентів" },
@@ -70,7 +73,7 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link href="/diagnostics" className="btn-primary w-full sm:w-auto flex-col items-center gap-0.5 text-center animate-pulse-glow">
+              <Link href="/diagnostics" onClick={() => track("cta_click", { location: "hero" })} className="btn-primary w-full sm:w-auto flex-col items-center gap-0.5 text-center animate-pulse-glow">
                 <span className="flex items-center gap-2">Записатися на безкоштовну консультацію <ArrowRight size={18} className="shrink-0" /></span>
                 <span className="text-[10px] font-semibold uppercase tracking-[1.5px] opacity-70">
                   Для початківців в інвестиціях
@@ -78,6 +81,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="#program"
+                onClick={() => track("hero_learn_more_click")}
                 className="border-b border-line pb-1 text-[13px] font-medium text-textDark/80 transition hover:text-sky2"
               >
                 ДІЗНАЙСЯ БІЛЬШЕ ПРО «BY INVEST 3.0» →

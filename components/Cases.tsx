@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { track } from "@vercel/analytics";
 import {
   ArrowLeft,
   ArrowRight,
@@ -111,14 +112,14 @@ export default function Cases() {
           </div>
           <div className="flex gap-2">
             <button
-              onClick={() => scrollBy(-1)}
+              onClick={() => { scrollBy(-1); track("slider_click", { section: "cases", direction: "prev" }); }}
               aria-label="Попередній кейс"
               className="grid h-12 w-12 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:shadow-sky"
             >
               <ArrowLeft size={18} />
             </button>
             <button
-              onClick={() => scrollBy(1)}
+              onClick={() => { scrollBy(1); track("slider_click", { section: "cases", direction: "next" }); }}
               aria-label="Наступний кейс"
               className="grid h-12 w-12 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:shadow-sky"
             >
