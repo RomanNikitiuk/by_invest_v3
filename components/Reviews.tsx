@@ -181,7 +181,7 @@ export default function Reviews() {
                 target="_blank"
                 rel="noreferrer"
                 className="eyebrow transition-opacity hover:opacity-75"
-                onClick={() => trackEvent("external_link_click", { section: "reviews", location: "telegram_reviews" })}
+                onClick={() => trackEvent("reviews_click", { section: "reviews", location: "telegram_reviews" })}
               >
                 <Send size={14} />
                 Відгуки з Telegram
@@ -232,7 +232,7 @@ export default function Reviews() {
                 target="_blank"
                 rel="noreferrer"
                 className="eyebrow transition-opacity hover:opacity-75"
-                onClick={() => trackEvent("external_link_click", { section: "reviews", location: "youtube_tv" })}
+                onClick={() => trackEvent("reviews_click", { section: "reviews", location: "youtube_tv" })}
               >
                 <PlayCircle size={14} />
                 Виступи на телебаченні
