@@ -32,7 +32,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Telegram"
-                onClick={() => trackEvent("social_click", { location: "footer_telegram" })}
+                onClick={() => trackEvent("social_click", { section: "footer", location: "footer_telegram" })}
                 className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:text-sky2 hover:shadow-sky"
               >
                 <Send size={16} />
@@ -42,7 +42,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="YouTube"
-                onClick={() => trackEvent("social_click", { location: "footer_youtube" })}
+                onClick={() => trackEvent("social_click", { section: "footer", location: "footer_youtube" })}
                 className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:text-sky2 hover:shadow-sky"
               >
                 <Youtube size={16} />
@@ -52,7 +52,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                onClick={() => trackEvent("social_click", { location: "footer_instagram" })}
+                onClick={() => trackEvent("social_click", { section: "footer", location: "footer_instagram" })}
                 className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white2 text-navyDeep transition-all hover:-translate-y-0.5 hover:border-sky2 hover:text-sky2 hover:shadow-sky"
               >
                 <Instagram size={16} />
