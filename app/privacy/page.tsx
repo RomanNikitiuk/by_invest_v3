@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen" style={{ background: "linear-gradient(180deg, #ffffff 0%, #d6ecfc 100%)" }}>
-      {/* Header nav */}
       <div className="border-b border-line bg-white/80 backdrop-blur-md">
         <div className="container-px flex h-[64px] items-center gap-4">
           <Link href="/" className="flex items-center gap-2 font-display text-[17px] font-extrabold text-textDark">
@@ -33,8 +32,13 @@ export default function PrivacyPage() {
             <section>
               <h2>1. Загальні положення</h2>
               <p>1.1. Ця Політика конфіденційності (далі — «Політика») визначає порядок збору, обробки, використання та захисту персональних даних користувачів, які взаємодіють з сайтом <a href="https://byinvest.by-finance.com" className="text-sky2 hover:underline">https://byinvest.by-finance.com</a>, Telegram-ботом «BY Invest навчання», а також іншими сервісами Школи BY Finance.</p>
-              <p>1.2. Політика розроблена відповідно до Закону України «Про захист персональних даних» та положень Цивільного кодексу України.</p>
-              <p>1.3. Використовуючи сайт, Telegram-бот, платформи навчання або оплачуючи послуги, Користувач надає згоду на обробку своїх персональних даних.</p>
+              <p>1.2. Власником та розпорядником персональних даних є:<br />
+              Фізична особа-підприємець Баткалова Юлія Юріївна<br />
+              ІПН: 3213921163<br />
+              Адреса: Україна, 04112, м. Київ, вул. Сікорського Ігоря Авіаконструктора, буд. 4-Б, кв. 149<br />
+              Email: <a href="mailto:by.finance.school@gmail.com" className="text-sky2 hover:underline">by.finance.school@gmail.com</a></p>
+              <p>1.3. Політика розроблена відповідно до Закону України «Про захист персональних даних» та положень Цивільного кодексу України.</p>
+              <p>1.4. Використовуючи сайт, Telegram-бот, платформи навчання або оплачуючи послуги, Користувач надає згоду на обробку своїх персональних даних.</p>
             </section>
 
             <section>
@@ -140,7 +144,6 @@ export default function PrivacyPage() {
           </div>
         </div>
       </div>
-
     </main>
   );
 }
