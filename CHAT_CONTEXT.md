@@ -2,173 +2,129 @@
 
 ## Проект
 Next.js 14 App Router + TypeScript + Tailwind CSS  
-Репозиторій: GitHub (Roman Nikitiuk)  
+Репозиторій: GitHub — RomanNikitiuk/by_invest_v3  
 Деплой: Vercel  
 Папка: `/Users/romannikitiuk/Documents/Projects/by_invest_v3`
 
 ---
 
-## Що було зроблено
+## Поточний стан (оновлено 22 травня 2026)
 
-### 1. Логування кнопок (Vercel Analytics + Google Sheets)
+### Git
+- HEAD: `6a46aab` — chore: update worktree files and add chat context
+- Локальна гілка **повністю синхронізована** з origin/main
+- Немає uncommitted змін
 
-**Як працює:**
-- `lib/trackEvent.ts` — основна функція, викликає обидва трекери
-- `lib/trackSheet.ts` — відправляє POST на `/api/track`
-- `app/api/track/route.ts` — проксі до Google Apps Script
-- Google Apps Script `doPost()` — записує рядок у Google Sheets
-
-**Env змінна:** `GAS_SCRIPT_URL` (вже є у Vercel і в `.env.local`)
-
-**Які кнопки мають трекінг:**
-- Hero → `cta_click { location: "hero" }`
-- Header (desktop + mobile) → `cta_click { location: "header_desktop/mobile" }`
-- About → `cta_click { location: "about" }`
-- Tariffs (buy/reserve/guarantee) → `tariff_buy/reserve/guarantee_click`
-- Cases slider → `cases_slider_click`
-- Reviews slider → `reviews_slider_click`
-- Program accordion → `program_accordion_click`
-- FAQ accordion → `faq_accordion_click`
-- CTASection → `cta_click { location: "cta_section" }`
-- CTABottom → `cta_click { location: "cta_bottom" }`
-- Footer CTA → `cta_click { location: "footer" }`
-- Footer соцмережі → `social_click { platform: "telegram/youtube/instagram" }`
-- Footer Політика → `legal_click { page: "privacy" }`
-- Footer Оферта → `legal_click { page: "offer" }`
-
-**Google Sheets:**
-- ANALYTICS_SHEET_ID: `1vDiwMERTbND51aCfCRo_K05usKh5YthbqnW3hPKoojY`
-- ANALYTICS_GID: `754404709`
-
----
-
-## ГОЛОВНА НЕВИРІШЕНА ПРОБЛЕМА
-
-### CTASection, CTABottom, Footer не записуються в Google Sheets
-
-**Що відомо:**
-- Перша хвиля кнопок (Hero, Header, About, Tariffs, слайдери, акордеони) — **ПРАЦЮЮТЬ**
-- CTASection, CTABottom, Footer — **НЕ ЗАПИСУЮТЬСЯ**
-- Код у компонентах ідентичний (обидва мають `"use client"`, однаковий `trackEvent`)
-- Commit `9c3214a` з трекінгом CTASection/CTABottom/Footer — **ЗАПУШЕНИЙ** на Vercel
-
-**Знайдена причина (майже точно):**
-
-У production версії `trackEvent.ts` (до непушеного коміту `aa52fae`) немає `try/catch`:
-
-```typescript
-// PRODUCTION (ПРОБЛЕМНА ВЕРСІЯ):
-export function trackEvent(event, props) {
-  track(event, props);      // ← якщо throws error → trackSheet НІКОЛИ не виконується
-  trackSheet(event, props); // ← не дійде сюди
-}
+### Структура ключових файлів
 ```
+app/
+  page.tsx              — головна сторінка
+  layout.tsx
+  globals.css
+  diagnostics/page.tsx  — форма для заявок на консультацію
+  privacy/page.tsx      — Політика конфіденційності
+  offer/page.tsx        — Публічна оферта
+  api/
+    track/route.ts      — трекінг подій → Google Sheets
+    submit/route.ts     — відправка форм → Google Sheets + Telegram
 
-Виправлення є в **непушеному** коміті `aa52fae`:
-
-```typescript
-// ВИПРАВЛЕНА ВЕРСІЯ (локально, не запушена):
-export function trackEvent(event, props) {
-  trackSheet(event, props); // ← спочатку trackSheet (з keepalive)
-  try {
-    track(event, props);    // ← якщо кидає помилку — не страшно
-  } catch {}
-}
-```
-
-**Що треба зробити:**
-1. Запушити коміт `aa52fae` в GitHub (проблема з auth token)
-2. Дочекатись деплою Vercel
-3. Перевірити чи CTASection/CTABottom/Footer починають записуватись
-
----
-
-## Git стан
-
-```
-aa52fae (HEAD, НЕ ЗАПУШЕНИЙ) fix: call trackSheet before track()  ← ТРЕБА ЗАПУШИТИ
-699b99b fix: add keepalive to fetch
-9c3214a feat: add tracking to CTASection, CTABottom, Footer
-e2773ce docs: update privacy policy and public offer
-ff34f0a fix: use GAS_SCRIPT_URL env variable
-494e11d feat: add Google Sheets event tracking via Apps Script
-...
-```
-
-**Проблема з push:** `fatal: could not read Username for 'https://github.com'`  
-→ Потрібен GitHub Personal Access Token (Settings → Developer settings → Personal access tokens)  
-→ Використати: `git remote set-url origin https://TOKEN@github.com/USER/REPO.git`
-
----
-
-## Ключові файли
-
-### `lib/trackEvent.ts` (локально — виправлена версія)
-```typescript
-"use client";
-import { track } from "@vercel/analytics";
-import { trackSheet } from "./trackSheet";
-
-export function trackEvent(event: string, props?: Record<string, string | number>) {
-  trackSheet(event, props); // спочатку
-  try {
-    track(event, props);
-  } catch {}
-}
-```
-
-### `lib/trackSheet.ts`
-```typescript
-export async function trackSheet(event: string, props?: Record<string, string | number>) {
-  try {
-    await fetch("/api/track", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ event, ...props }),
-      keepalive: true,
-    });
-  } catch {}
-}
-```
-
-### `app/api/track/route.ts`
-Проксі до GAS. Форвардить: `event, location, tariff, section, direction, module, question_idx, timestamp`  
-⚠️ `platform` (для social_click) не форвардиться — дрібна проблема з даними
-
-### Google Apps Script `doPost`
-```javascript
-function doPost(e) {
-  const data = JSON.parse(e.postData.contents);
-  const ss = SpreadsheetApp.openById("1vDiwMERTbND51aCfCRo_K05usKh5YthbqnW3hPKoojY");
-  const sheet = ss.getSheets().find(s => s.getSheetId() === 754404709);
-  sheet.appendRow([data.timestamp, data.event, data.location, data.tariff,
-    data.section, data.direction, data.module, data.question_idx]);
-  return ContentService.createTextOutput(JSON.stringify({ success: true }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
+lib/
+  trackEvent.ts         — об'єднаний трекер (Vercel Analytics + Google Sheets)
+  trackSheet.ts         — fetch до /api/track
 ```
 
 ---
 
-## Дрібні відомі проблеми
+## Система трекінгу
 
-1. **`platform` prop загублений** — `social_click` відправляє `{ platform: "telegram" }`, але API route не форвардить `platform`. Записується тільки event, решта порожньо.
-   - Виправлення: додати `platform: body.platform ?? ""` в `app/api/track/route.ts`
+### Як працює
+- `lib/trackEvent.ts` → викликає `trackSheet` (спочатку) і `track` Vercel Analytics
+- `lib/trackSheet.ts` → POST на `/api/track` з `keepalive: true`
+- `app/api/track/route.ts` → проксі до Google Apps Script (GAS)
+- GAS `doPost()` → записує рядок у Google Sheets
 
-2. **4 активних деплоя Google Apps Script** — всі мають одну URL, не проблема
+### Env змінні
+- `GAS_SCRIPT_URL` — URL Google Apps Script (є у Vercel і `.env.local`)
+- `GAS_SECRET` — секрет для форми заявок
+- `TG_BOT_TOKEN` — токен Telegram-бота для заявок
+- `TG_CHAT_ID` — chat_id для отримання заявок
+
+### Google Sheets Analytics
+- SHEET_ID: `1vDiwMERTbND51aCfCRo_K05usKh5YthbqnW3hPKoojY`
+- GID: `754404709`
+
+### Поля в Google Sheets (трекінг)
+`timestamp, event, location, tariff, section, direction, module, question_idx, country, city`
+
+> `country` і `city` беруться з Vercel headers (`x-vercel-ip-country`, `x-vercel-ip-city`) — безкоштовно, без зовнішніх API
+
+### Які події трекуються
+| Подія | Де |
+|---|---|
+| `cta_click { location: "hero" }` | Hero |
+| `cta_click { location: "header" }` | Header (desktop + mobile) |
+| `cta_click { location: "about" }` | About |
+| `cta_click { location: "tariffs_guarantee" }` | Tariffs (guarantee) |
+| `tariff_buy_click { tariff }` | Tariffs (buy) |
+| `tariff_reserve_click { tariff }` | Tariffs (reserve) |
+| `slider_click { section: "cases", direction }` | Cases slider |
+| `slider_click { section: "reviews", direction }` | Reviews slider |
+| `reviews_click { location: "telegram_reviews" / "youtube_tv" }` | Reviews external links |
+| `program_accordion_click { module }` | Program accordion |
+| `faq_accordion_click { question_idx }` | FAQ accordion |
+| `cta_click { location: "cta_section" }` | CTASection |
+| `cta_click { location: "cta_bottom" }` | CTABottom |
+| `cta_click { location: "footer" }` | Footer CTA |
+| `social_click { location: "footer_telegram/youtube/instagram" }` | Footer соцмережі |
+| `legal_click { page: "privacy/offer" }` | Footer посилання |
+| `form_submit { section: "diagnostics", location: "success/error/validation_error" }` | Форма заявок |
+| `hero_learn_more_click` | Hero "Дізнатись більше" |
+
+> Платформа соцмереж закодована в `location` (напр. `"footer_telegram"`), бо `platform` поле не форвардиться через API route.
 
 ---
 
-## Зміни в Privacy Policy / Public Offer
+## Форма заявок (`/diagnostics`)
 
-Оновлені сторінки з новим контентом PDF:
-- `app/privacy/page.tsx` — Політика конфіденційності (ФОП Баткалова Юлія Юріївна, ІПН: 3213921163, від 15 травня 2026)
+- Поля: ім'я, телефон (код країни + номер), Telegram, місцезнаходження, питання
+- Розширений список кодів країн (50+)
+- Валідація на фронті + трекінг помилок валідації
+- При успішному submit:
+  1. Дані записуються в Google Sheets через GAS (GET запит з `secret`)
+  2. Повідомлення надсилається в Telegram-бот
+
+---
+
+## Сторінки Privacy / Offer
+
+- `app/privacy/page.tsx` — Політика конфіденційності  
+  ФОП Баткалова Юлія Юріївна, ІПН: 3213921163  
+  Адреса: Україна, 04112, м. Київ, вул. Сікорського Ігоря Авіаконструктора, буд. 4-Б  
+  Дата оновлення: **21 травня 2026 року**
+
 - `app/offer/page.tsx` — Публічна оферта
 
 ---
 
-## Наступні кроки
+## Технічний борг / відомі нюанси
 
-1. **КРИТИЧНО:** Запушити `aa52fae` — потрібен GitHub токен
-2. Після деплою Vercel — перевірити CTASection/CTABottom/Footer в Google Sheets
-3. (Опційно) Виправити `platform` в `app/api/track/route.ts`
+1. **Старий worktree** — `.claude/worktrees/brave-dirac-8bc117/` залишився від попередньої сесії Claude Code. Закомічений, не впливає на проект.
+2. **4 активних деплоя Google Apps Script** — всі мають одну URL, не проблема.
+
+---
+
+## Git — як пушити з терміналу
+
+Пісочниця Claude не може пушити через відсутність auth. Пушити треба з терміналу:
+
+```bash
+cd /Users/romannikitiuk/Documents/Projects/by_invest_v3
+git push origin main
+```
+
+Якщо є lock-файли:
+```bash
+rm .git/index.lock   # якщо є
+rm .git/HEAD.lock    # якщо є
+git push origin main
+```
